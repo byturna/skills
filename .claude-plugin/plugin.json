@@ -1,0 +1,11 @@
+{
+  "name": "anr",
+  "description": "Agent skills for building native iOS interfaces with SwiftUI and UIKit, following Apple's Human Interface Guidelines.",
+  "version": "0.1.0",
+  "author": {
+    "name": "byturna"
+  },
+  "homepage": "https://github.com/byturna/skills",
+  "repository": "https://github.com/byturna/skills",
+  "license": "MIT"
+}
