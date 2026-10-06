@@ -10,7 +10,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | --- | --- | --- | --- |
 | 0 | `write-swift` | Emil: `write-swift`, with the scripted first reply removed and the toolchain baseline set to Swift 6.2. The prose pass against `AGENTS.md` is still to do | Added |
 | 1 | `accessibility` | Jakub: `better-accessibility` and every reference file, rebuilt on the HIG Accessibility and VoiceOver pages and the App Store accessibility label criteria | Added |
-| 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Planned |
+| 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Added |
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12 | Planned |
 | 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15 | Planned |
 | 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16, the navigation rows of `animate-expo` | Planned |
@@ -53,7 +53,7 @@ The audits use the source names. They map to this repository's names as follows.
 - Plugin `anr`, marketplace `uix`.
 - Bare skill names, mapped under **Names** above.
 - A skeleton first, then each skill added finished. No verbatim import of either source.
-- iOS 26 minimum deployment target, built with Xcode 26.3, so no API newer than iOS 26.
+- iOS 26 minimum deployment target, built with Xcode 26.3 on the iOS 26.2 SDK, so no API introduced after iOS 26.2.
 - SwiftUI first, with a UIKit column in each reference cheat sheet.
 - iPhone and iPad. No Mac Catalyst, macOS or visionOS.
 - Contrast: Apple's table, the one Accessibility Inspector checks against. Up to 17pt needs 4.5:1, 18pt and up 3:1, bold at any size 3:1 and controls 3:1.
