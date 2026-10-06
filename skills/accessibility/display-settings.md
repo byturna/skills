@@ -74,7 +74,7 @@ Label(status.title, systemImage: status.symbolName)
 
 // Bad: a dot whose color is the only difference between states
 Circle()
-    .fill(isOnline ? .green : .red)
+    .fill(isOnline ? Color.green : Color.red)
     .frame(width: 8, height: 8)
 ```
 
