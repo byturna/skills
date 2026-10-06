@@ -1,0 +1,14 @@
+{
+  "name": "uix",
+  "description": "Agent skills for building native iOS interfaces with SwiftUI and UIKit.",
+  "owner": {
+    "name": "byturna"
+  },
+  "plugins": [
+    {
+      "name": "anr",
+      "source": "./",
+      "description": "Agent skills for building native iOS interfaces with SwiftUI and UIKit, following Apple's Human Interface Guidelines."
+    }
+  ]
+}
