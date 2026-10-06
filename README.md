@@ -4,6 +4,7 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 
 ## Skills
 
+- [**accessibility**](skills/accessibility/SKILL.md): Reviews and fixes VoiceOver, Voice Control, keyboard, Dynamic Type, touch target, form and Reduce Motion support in SwiftUI and UIKit apps, against Apple's accessibility criteria.
 - [**write-swift**](skills/write-swift/SKILL.md): Writes, reviews and migrates modern Swift, from value types and generics to Swift 6 concurrency, performance and Swift Testing.
 
 ## Install
