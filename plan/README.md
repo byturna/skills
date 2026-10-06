@@ -9,7 +9,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | # | Skill | Built from | Status |
 | --- | --- | --- | --- |
 | 0 | `write-swift` | Emil: `write-swift`, with the scripted first reply removed and the toolchain baseline set to Swift 6.2. The prose pass against `AGENTS.md` is still to do | Added |
-| 1 | `accessibility` | Jakub: `better-accessibility` and every reference file | Planned |
+| 1 | `accessibility` | Jakub: `better-accessibility` and every reference file, rebuilt on the HIG Accessibility and VoiceOver pages and the App Store accessibility label criteria | Added |
 | 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Planned |
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12 | Planned |
 | 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15 | Planned |
@@ -56,6 +56,10 @@ The audits use the source names. They map to this repository's names as follows.
 - iOS 26 minimum deployment target, built with Xcode 26.3, so no API newer than iOS 26.
 - SwiftUI first, with a UIKit column in each reference cheat sheet.
 - iPhone and iPad. No Mac Catalyst, macOS or visionOS.
+- Contrast: Apple's table, the one Accessibility Inspector checks against. Up to 17pt needs 4.5:1, 18pt and up 3:1, bold at any size 3:1 and controls 3:1.
+- Tap targets: under 28×28pt is a finding; 28pt to 44pt is a recommendation.
+- A toolbar Done may stay disabled while a required field is visibly empty.
+- Findings cite Apple's criteria and the HIG, never WCAG criterion numbers.
 
 **Defaults, pending the owner's confirmation**
 
@@ -66,13 +70,9 @@ The audits use the source names. They map to this repository's names as follows.
 
 **Open, decided when the affected skill is converted**
 
-- Contrast table: WCAG's large-text rule or the HIG's, which passes bold text at 3:1 at any size. White on the default `systemBlue` measures about 4.0:1, so the choice decides whether it is a finding. Affects `accessibility` and `color`.
-- Hit targets: the HIG gives 44×44pt as the default and 28×28pt as the minimum. Which one is the finding, and is it an escalation trigger?
 - Capitalization: adopt Apple's title style for buttons, menu items, alert titles and navigation titles.
-- Form validation: accept the system pattern of a disabled toolbar Done until required fields hold a value.
 - Navigation and presentation: inside `layout`, as `AGENTS.md` currently says, or a skill of its own.
 - Preview lifetime: keep state previews committed, the Swift norm, or delete them on request.
-- WCAG citations: needed only if the app ships in the EU under EN 301 549.
 - Surfaces in scope: widgets, Live Activities, notifications and App Intents.
 
 ## Corrections to audit.md
