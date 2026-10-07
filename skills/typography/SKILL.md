@@ -29,7 +29,7 @@ Body text is `.body`, 17pt at the default size. Nothing sets smaller than `.capt
 
 ## Regular weight and up
 
-Reading text uses Regular, Medium, Semibold or Bold. `.ultraLight`, `.thin` and `.light` are hard to read, above all at small sizes, so keep them to a large display number judged on screen. Emphasize within a style with `.bold()`, which gives each style its emphasized weight, or with `.fontWeight`. Never emphasize by stepping up a size.
+Reading text uses Regular, Medium, Semibold or Bold. `.ultraLight`, `.thin` and `.light` are hard to read, above all at small sizes, so keep them to text of 28pt and up, which is `.title` and larger. Apple publishes no threshold, so 28pt is a working line. Emphasize within a style with `.bold()`, which gives each style its emphasized weight, or with `.fontWeight`. Never emphasize by stepping up a size.
 
 ## Leave SF Pro's spacing alone
 
@@ -91,7 +91,7 @@ Text on iOS is not selectable by default. Add `.textSelection(.enabled)` to the 
 | A `Font.custom` name missing from `UIAppFonts`, or not a PostScript name | Register the file and use its PostScript name |
 | `Font.custom` naming SF Pro or New York, or their files in the bundle | `.fontDesign` and `.fontWidth` |
 | `.tracking` or `.kerning` on system text | Remove it |
-| `.ultraLight`, `.thin` or `.light` on reading text | `.regular` or heavier |
+| `.ultraLight`, `.thin` or `.light` below 28pt, under `.title` | `.regular` or heavier |
 | A size below 11pt | `.caption2` at the smallest |
 | A heading style smaller than the heading below it, or than body text | The next style up the scale |
 | `.lineSpacing` on interface text | Remove it, or `Font.leading(.loose)` on a long passage |

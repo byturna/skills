@@ -27,8 +27,8 @@ Where the length of a scrolling area is not obvious, `.scrollIndicatorsFlash(onA
 
 ```swift
 DisclosureGroup("Advanced Options") {
-    Toggle("Keep Original Files", isOn: $keepsOriginals)
-    Toggle("Include Hidden Items", isOn: $includesHidden)
+    Toggle("Keep original files", isOn: $keepsOriginals)
+    Toggle("Include hidden items", isOn: $includesHidden)
 }
 ```
 

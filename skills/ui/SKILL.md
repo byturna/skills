@@ -15,7 +15,7 @@ Bars, sheets, popovers, menus and system controls take their Liquid Glass, corne
 
 The system APIs, the HIG's standard symbols and its 35% dimming layer are exact. The image outline and the pointer hit-region padding are starting points, judged on screen. A consistent project convention, such as one card radius, is a preference. The same detail done two ways in one project is a finding.
 
-An app whose Info.plist sets `UIDesignRequiresCompatibility` has opted out of Liquid Glass. Skip the glass rules and say so in the report.
+An app whose Info.plist sets `UIDesignRequiresCompatibility` has opted out of Liquid Glass. Skip the glass rules and report the opt-out once as `LOW`. Apple calls the key temporary, and builds against the iOS 27 SDK ignore it.
 
 ## Glass belongs to controls and navigation
 

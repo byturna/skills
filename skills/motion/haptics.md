@@ -38,7 +38,7 @@ The condition closure plays the haptic only for the change that matters, here th
 - **Short, for discrete events.** In an app, a long-running haptic dilutes its meaning.
 - **Matched in strength.** A light impact goes with a small, quick animation and a heavy one with a large landing.
 
-Toggles, sliders and pickers already play their own haptics. Adding a second one to them doubles the feedback.
+System controls play their own haptics, from toggles, sliders and pickers to swipe actions and context menus. Apple documents the first three, and the rest do so in practice. Adding a second haptic to any of them doubles the feedback.
 
 ## Custom haptics
 

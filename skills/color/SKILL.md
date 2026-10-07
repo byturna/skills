@@ -13,13 +13,13 @@ Whether a pair must pass belongs to `accessibility`, and so does the rule that n
 
 Never report a contrast value you did not measure, and never estimate a color you could compute. System colors adapt to dark mode, elevated backgrounds, Increase Contrast and vibrancy on their own. The values Apple documents for them are references for design, and they change between releases.
 
-A role used against its meaning, a failing measured pair, a missing variant and a custom color standing in for a system one are findings. Notation, a tinted neutral and a gradient's color space are project choices. Perceived lightness throughout means OKLCH `L`, from `0` to `1`.
+A role used against its meaning, a failing measured pair, a missing variant and a custom color standing in for a system one with no brand reason are findings. Notation, a tinted neutral and a gradient's color space are project choices. Perceived lightness throughout means OKLCH `L`, from `0` to `1`.
 
 ## System colors first
 
-Text takes `.primary`, `.secondary`, `.tertiary` or `.quaternary`. Backgrounds take the system or grouped background levels, separators take `.separator` and links take `.link`. Neutral fills and grays come from the system too. A status color is a system color such as `.red` or `.green`, which adapts to each appearance. Never hard-code the value of a system color.
+Text takes `.primary`, `.secondary`, `.tertiary` or `.quaternary`. Backgrounds take the system or grouped background levels, separators take `.separator` and links take `.link`. Neutral fills and grays come from the system too, unless the brand calls for its own. A status color is a system color such as `.red` or `.green`, which adapts to each appearance. Never hard-code the value of a system color.
 
-Custom colors are for the brand, the accent and the categories a product defines. A custom neutral ramp loses the dark, elevated, high-contrast and vibrant variants the system colors carry. The role table is in [system-colors.md](system-colors.md).
+Custom colors are for the brand, the accent and the categories a product defines. A brand may also define warm or cool neutrals, as a ramp whose colors carry every variant. A custom neutral still loses the elevated and vibrant behavior of the system's. So text on a material keeps the hierarchical styles, and sheets and popovers get checked in dark mode, where the system lifts its own backgrounds. The role table is in [system-colors.md](system-colors.md).
 
 ## Each color in its role
 
@@ -49,7 +49,7 @@ A custom ramp holds one hue end to end, peaks in vividness mid-ramp and steps mo
 
 ## Follow the system appearance
 
-The app follows the appearance people chose for the device. Never offer an in-app light and dark setting, which `.preferredColorScheme` would drive. The exception is an app built around media, which may stay dark throughout. iOS's dark base background is pure black, so a dark palette never needs to avoid black.
+The app follows the appearance people chose for the device by default. An in-app setting for Light, Dark and System is a fine preference when System is its default, applied once with `.preferredColorScheme` at the root. An app built around media may stay dark throughout. iOS's dark base background is pure black, so a dark palette never needs to avoid black.
 
 ## Measure the rendered pair
 
@@ -94,14 +94,14 @@ A color set stores sRGB or Display P3 components. A value from a design tool is 
 | `.quaternary` on `.thinMaterial` or `.ultraThinMaterial` | `.tertiary`, or a thicker material |
 | Several glass controls tinted on one screen | Tint only the primary action |
 | Text on a background with `.opacity` | Measure the composited result, or use a solid color |
-| `.preferredColorScheme` driven by an in-app setting | Follow the system appearance |
+| `.preferredColorScheme` with a fixed appearance, or an appearance setting that does not default to System | Follow the system appearance by default |
 | White text on a system color fill, unmeasured | Measure it in both appearances |
 | A status hue within about 15° of the accent | Move it, or give the action a distinct treatment |
 | `UIColor(dynamicProvider:)` rebuilding a system color | The system color |
 
 ## Reporting
 
-**Severity.** `HIGH` makes content unreadable or misleads. Three of `design-review`'s escalation triggers land here and are `HIGH` on sight. They are body or control text whose rendered pair fails its threshold, state or meaning carried by color alone and a semantic color used against its meaning. `MEDIUM` is a missing variant, a hard-coded color, a role borrowed for another job or an in-app appearance setting. `LOW` is isolated polish.
+**Severity.** `HIGH` makes content unreadable or misleads. Three of `design-review`'s escalation triggers land here and are `HIGH` on sight. They are body or control text whose rendered pair fails its threshold, state or meaning carried by color alone and a semantic color used against its meaning. `MEDIUM` is a missing variant, a hard-coded color, a role borrowed for another job or an app that ignores the system appearance by default. `LOW` is isolated polish.
 
 **Verification.** Without Xcode, read every color in scope against the rules above. Open each `.colorset/Contents.json` to check its variants and color space. Compute contrast from declared components where both colors are custom and opaque, and mark pairs that involve system colors or translucency `Not verified`. With Xcode, render each screen in light and dark, with Increase Contrast off and on. Measure each pair with Accessibility Inspector's Color Contrast Calculator, or with `Color.resolve(in:)` in a test. Report every check you could not run as `Not verified`.
 

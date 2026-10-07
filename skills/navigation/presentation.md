@@ -55,7 +55,7 @@ struct AddressEditor: View {
     var body: some View {
         NavigationStack {
             AddressForm(draft: $draft)
-                .navigationTitle("Edit Address")
+                .navigationTitle("Edit address")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {

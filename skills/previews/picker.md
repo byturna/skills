@@ -1,22 +1,13 @@
 # The picker
 
-The control that switches variants and the code that hosts them. It sits over the thing being judged, so build it as specified and leave it alone.
-
-## Deliberately outside the design system
-
-Never style the picker with the project's colors, fonts, tint or glass. A picker that looks native becomes part of what you are looking at, and one in Liquid Glass reads as the app's own control.
-
-It is one dark capsule with white text in the system font, and it stays dark in both appearances.
+The All states preview, which flips through every state in one place, and the picker over it. The picker is debug chrome, so build it as specified and leave it alone.
 
 ## Behavior
 
-- Tapping a name selects that variant. The choice lives in `@AppStorage("__variant")`, so it survives a relaunch.
-- Switching is instant, with no animation, and keeps the scroll position.
-- The chevron collapses the picker to the current name, for screenshots and recordings. Tapping the name brings it back.
-- The selected name carries the selected trait for VoiceOver, and the picker reads as one labeled group.
-- Where the names do not fit the width, the row scrolls sideways.
-- Its strings are plain `String` values, never localized keys, so the picker adds nothing to the String Catalog.
-- It sits at the bottom of the hosting screen's safe area, above a tab bar or toolbar. Where the piece itself sits there, move the picker to the top and say so.
+- It is one dark capsule with white text in the system font, outside the project's colors, fonts, tint and glass.
+- Tapping a name shows that state. Switching is instant, with no animation.
+- The chevron collapses the picker to the current name, for screenshots and recordings.
+- The selected name carries the selected trait for VoiceOver, and its strings never reach the String Catalog.
 
 ## The picker
 
@@ -92,47 +83,34 @@ private struct DebugPickerButtonStyle: ButtonStyle {
 #endif
 ```
 
-## Hosting the variants
+## All states
 
-The variants are cases of one enum, and the hosting screen switches on the stored choice. Release builds keep the screen's current view, or nothing where the piece is new:
+One enum lists the states, each feeding the fixture its named preview uses:
 
 ```swift
 #if DEBUG
-enum ActivityCardVariant: String, CaseIterable {
-    case quiet, editorial, dense
-}
-#endif
+enum MemberListState: String, CaseIterable {
+    case typical, empty, crowded
 
-struct ActivityScreen: View {
-    let activity: Activity
-
-    #if DEBUG
-    @AppStorage("__variant") private var variant = ActivityCardVariant.quiet
-    #endif
-
-    var body: some View {
-        ScrollView {
-            #if DEBUG
-            switch variant {
-            case .quiet:
-                QuietActivityCard(activity: activity)
-            case .editorial:
-                EditorialActivityCard(activity: activity)
-            case .dense:
-                DenseActivityCard(activity: activity)
-            }
-            #else
-            ActivityCard(activity: activity)
-            #endif
+    var members: [Member] {
+        switch self {
+        case .typical: Member.typical
+        case .empty: []
+        case .crowded: Member.worstCase
         }
-        .navigationTitle("Activity")
-        #if DEBUG
-        .overlay(alignment: .bottom) {
-            DebugPicker("Variants", selection: $variant)
-        }
-        #endif
     }
 }
+
+#Preview("All states") {
+    @Previewable @State var state = MemberListState.typical
+    NavigationStack {
+        MemberList(members: state.members)
+    }
+    .overlay(alignment: .bottom) {
+        DebugPicker("States", selection: $state)
+    }
+}
+#endif
 ```
 
-Keep the variant views, their previews and the enum in one folder named for the piece, such as `Variants/ActivityCard/`, so removal is one delete plus the hosting lines.
+Run it in the canvas's live mode, or on a connected device where Xcode offers one in the Preview Device menu.

@@ -56,7 +56,7 @@ Apple sets the style for most components:
 | Alert or dialog title | Title style with no ending punctuation for a fragment, sentence style with its punctuation for a full sentence |
 | Notification title | Title style, no ending punctuation |
 | Alert message, footer, description, error, purpose string and notification body | Sentence style in complete sentences, with ending punctuation |
-| Navigation title, tab label and list row label | The project's style, or title style where it has none, as in the system apps |
+| Navigation title, tab label and list row label | The project's style, or sentence style where it has none |
 
 Any other element type takes one style of the project's choosing. A project that uses another style for an element type throughout keeps it. Mixed styles within one element type are the finding, such as Save Changes beside Discard changes. Which words title style leaves lowercase is in [patterns.md](patterns.md#title-style).
 
@@ -84,7 +84,7 @@ Link text makes sense out of context, since VoiceOver users can move from link t
 
 ## Settings describe the on state
 
-Label a toggle for what happens when it is on: Send Read Receipts, never Don't Send Read Receipts. People infer the off state. Add a footer only where the label cannot say enough.
+Label a toggle for what happens when it is on: Send read receipts, never Don't send read receipts. People infer the off state. Add a footer only where the label cannot say enough.
 
 Send people to a setting with a button that opens it, never a path to follow by hand. `UIApplication.openSettingsURLString` opens the app's page in Settings, and `openNotificationSettingsURLString` its notification settings. See [patterns.md](patterns.md#links-to-settings).
 
@@ -103,6 +103,8 @@ Confirm before an action that cannot be undone or is rare, and before one that a
 - The title names the action and the object, never "Are you sure?".
 - The message says what is lost for good, with counts where they apply.
 - The destructive button repeats the verb and the object, such as Delete Project, beside Cancel.
+
+Deleting an account, a workspace or a space other people share also asks for the object's name to be typed. The destructive button stays disabled until it matches.
 
 Templates are in [patterns.md](patterns.md#destructive-actions). Which presentation asks and the destructive role belong to `navigation`.
 
