@@ -20,7 +20,7 @@ The conversion is tracked in `plan/`, which holds the decisions, the order, the 
 
 ## Platform baseline
 
-- iOS 26 is the minimum deployment target, and the SDK is iOS 26, built with Xcode 26.3. Use no API that needs a newer SDK. When the baseline moves, this section moves with it.
+- iOS 26 is the minimum deployment target, and the SDK is iOS 26.2, from Xcode 26.3. Use no API introduced after iOS 26.2. Apple's documentation already lists iOS 27 APIs, so check each API's availability before naming it. When the baseline moves, this section moves with it.
 - The iOS 26 SDK applies Liquid Glass to system components, so every skill writes for that design.
 - SwiftUI first. A principle states the SwiftUI form. The UIKit form appears in a reference file's cheat sheet, never as a second statement of the rule.
 - iPhone and iPad. Mac Catalyst, macOS and visionOS are out of scope. Where iPad behaves differently, through size classes, pointer, hardware keyboard or resizable windows, the rule says so.
