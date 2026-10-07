@@ -94,7 +94,8 @@ A user-invoked skill may invoke model-invoked skills, but it can never reach ano
 | `variant` | Design exploration: the axis set variants may diverge on, how many to build, the in-app picker behind `#if DEBUG`, the tradeoff table and promotion. Owns no domain rules; every variant clears `design-review`'s escalation triggers as its floor |
 | `build-design` | Building from a design: reading the Figma file or image at its source, mapping design values and instances onto existing tokens, components and system controls, the rounding rule, building only what the frames show, the side-by-side comparison and the fidelity report. Owns no domain rules; a design that breaks one is reported to its owner, never silently fixed |
 | `accessibility` | VoiceOver labels, traits, grouping, actions and focus; Voice Control, Switch Control and Full Keyboard Access; the requirement that text scales and nothing clips at accessibility sizes; hit targets; input semantics; announcements; display accommodations as requirements; the contrast requirement |
-| `layout` | Grouping, alignment, spacing, safe areas, size classes, adaptive structure, structure at accessibility text sizes, RTL mirroring of structure, keyboard avoidance, the expansion affordance for truncated content and the structure of navigation and presentation |
+| `layout` | Grouping, alignment, spacing, safe areas, size classes, adaptive structure, structure at accessibility text sizes, RTL mirroring of structure, keyboard avoidance and the expansion affordance for truncated content |
+| `navigation` | How people move through the app and where a task appears: stacks, split views, tabs and sidebars, which presentation a flow uses among push, sheet, full-screen cover, popover, alert and confirmation dialog, sheet detents, toolbar item placement, search placement and wayfinding |
 | `writing` | Source wording, terminology, voice, tone, capitalization, labels, errors, empty states, permission purpose strings and the confirm-or-undo rule for destructive actions |
 | `typography` | Text styles and the type scale, custom fonts and their Dynamic Type scaling, weights, numerals, wrapping and truncation mechanics, punctuation and text-level bidi behavior |
 | `color` | System semantic colors, custom palettes and their construction, asset catalog structure and naming, appearance and high-contrast variants, gamut, rendered-pair contrast measurement, color remediation and color on materials and glass |
@@ -112,7 +113,9 @@ When a concern crosses domains, keep the rule in the owner above and let other s
 - `accessibility` owns Reduce Motion and Reduce Transparency as requirements; `motion` owns the reduced-motion implementation and `ui` owns surfaces under Reduce Transparency.
 - `motion` owns haptics; `accessibility` owns the rule that no state rides on motion or haptics alone.
 - `ui` owns where glass and materials go; `color` owns color and contrast on them.
-- `layout` owns which presentation a flow uses; `motion` owns how it animates, which is the system's unless a rule says otherwise.
+- `navigation` owns which presentation a flow uses; `motion` owns how it animates, which is the system's unless a rule says otherwise.
+- `navigation` owns where toolbar items go; `ui` owns the glass they share and how they group on it.
+- `navigation` owns whether a flow is modal; `accessibility` owns how a modal contains VoiceOver.
 - `change-review` owns what to review when the scope is a diff; `design-review` owns how that review is routed, ranked, consolidated and reported. The dependency runs one way: `change-review` hands its scope and statuses up, and `design-review` ranks, caps and issues the verdict. Neither file may restate the other's rules.
 
 ## Authoring conventions

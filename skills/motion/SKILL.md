@@ -7,7 +7,7 @@ description: Decides whether something in a SwiftUI or UIKit app should animate,
 
 This skill decides whether something on an iOS screen should move and, if it should, how. It picks the system transition, the spring, the gesture hand-off and the haptic, and writes them in SwiftUI.
 
-Whether motion is required under Reduce Motion belongs to `accessibility`. Which presentation a flow uses belongs to `layout`. Materials, Liquid Glass and which symbol to use belong to `ui`. The UIKit form of every API here is in [cheat-sheet.md](cheat-sheet.md), and the names for effects are in [vocabulary.md](vocabulary.md).
+Whether motion is required under Reduce Motion belongs to `accessibility`. Which presentation a flow uses belongs to `navigation`. Materials, Liquid Glass and which symbol to use belong to `ui`. The UIKit form of every API here is in [cheat-sheet.md](cheat-sheet.md), and the names for effects are in [vocabulary.md](vocabulary.md).
 
 ## Restraint first, then exact values
 

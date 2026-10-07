@@ -13,14 +13,15 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Added |
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12. Rebuilt on the HIG Materials, SF Symbols, Icons, Right to Left and Pointing Devices pages and Adopting Liquid Glass | Added |
 | 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15. Rebuilt on the HIG Typography and Right to Left pages, Applying Custom Fonts to Text and Scaling Fonts Automatically | Added |
-| 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16, the navigation rows of `animate-expo` | Planned |
-| 6 | `color` | Jakub: `better-colors` and every reference file | Planned |
-| 7 | `writing` | Jakub: `better-writing`, `patterns.md` | Planned |
-| 8 | `design-review` | Jakub: `better-interface`, `review-format.md`. The draft triggers below | Planned |
-| 9 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine` + `switcher.md`. Emil: `break-ui` + `CATALOG.md` | Planned |
-| 10 | `build-design` | Jakub: `build-design`, `figma.md` | Planned |
-| 11 | `change-review` | Jakub: `interface-review` and both reference files | Planned |
-| 12 | `variant` | Jakub: `variant` + `picker.md`. Emil: `prototype` + `PICKER.md` | Planned |
+| 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16 grouping and mapping. Rebuilt on the HIG Layout, Right to Left, Scroll Views, Lists and Tables, Disclosure Controls and Virtual Keyboards pages | Added |
+| 6 | `navigation` | Emil: `apple-design` §16 wayfinding, the navigation rows of `animate-expo`. New, on the HIG navigation and presentation pages | Planned |
+| 7 | `color` | Jakub: `better-colors` and every reference file | Planned |
+| 8 | `writing` | Jakub: `better-writing`, `patterns.md` | Planned |
+| 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The draft triggers below | Planned |
+| 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine` + `switcher.md`. Emil: `break-ui` + `CATALOG.md` | Planned |
+| 11 | `build-design` | Jakub: `build-design`, `figma.md` | Planned |
+| 12 | `change-review` | Jakub: `interface-review` and both reference files | Planned |
+| 13 | `variant` | Jakub: `variant` + `picker.md`. Emil: `prototype` + `PICKER.md` | Planned |
 
 Not converted: Jakub's `explain-interface`; Emil's `mobile-native`, `pick-ui-library`, `ask-sonner`, `improve-animations` and `performance-cheatsheet.md`. The reasons are in [audit.md](audit.md).
 
@@ -39,6 +40,7 @@ The audits use the source names. They map to this repository's names as follows.
 | `better-writing` | `writing` |
 | `better-ui` | `ui` |
 | new | `motion` |
+| new | `navigation` |
 | `better-interface` | `design-review` |
 | `interface-review` | `change-review` |
 | `break`, `state-machine`, `break-ui` | `previews` |
@@ -60,6 +62,7 @@ The audits use the source names. They map to this repository's names as follows.
 - Tap targets: under 28×28pt is a finding; 28pt to 44pt is a recommendation.
 - A toolbar Done may stay disabled while a required field is visibly empty.
 - Findings cite Apple's criteria and the HIG, never WCAG criterion numbers.
+- Navigation and presentation are a skill of their own, `navigation`, converted after `layout`.
 
 **Defaults, pending the owner's confirmation**
 
@@ -71,7 +74,6 @@ The audits use the source names. They map to this repository's names as follows.
 **Open, decided when the affected skill is converted**
 
 - Capitalization: adopt Apple's title style for buttons, menu items, alert titles and navigation titles.
-- Navigation and presentation: inside `layout`, as `AGENTS.md` currently says, or a skill of its own.
 - Preview lifetime: keep state previews committed, the Swift norm, or delete them on request.
 - Surfaces in scope: widgets, Live Activities, notifications and App Intents.
 
