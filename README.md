@@ -10,6 +10,7 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 - [**layout**](skills/layout/SKILL.md): Sets grouping, alignment, spacing, safe areas and adaptive structure in SwiftUI and UIKit apps, so a screen holds up across size classes, text sizes, languages and right-to-left.
 - [**motion**](skills/motion/SKILL.md): Decides whether something in a SwiftUI or UIKit app should animate, then builds it with system transitions, springs, symbol effects, gestures and haptics that feel native.
 - [**navigation**](skills/navigation/SKILL.md): Chooses how people move through SwiftUI and UIKit apps, from tabs, stacks and split views to sheets, popovers, alerts, toolbars and search.
+- [**previews**](skills/previews/SKILL.md): Writes previews that show one SwiftUI or UIKit view in every state and worst case it can reach, then reports what visibly broke and which skill owns the fix. User-invoked.
 - [**typography**](skills/typography/SKILL.md): Sets and reviews how text renders in SwiftUI and UIKit apps, from Dynamic Type text styles and custom fonts to weights, numerals, truncation and punctuation.
 - [**ui**](skills/ui/SKILL.md): Builds the surfaces and icons of SwiftUI and UIKit apps, from Liquid Glass, materials and concentric corners to SF Symbols and iPad pointer hover.
 - [**writing**](skills/writing/SKILL.md): Writes and checks the words in SwiftUI and UIKit apps, from buttons, alerts and errors to empty states, permission requests and notifications, in one voice and ready to translate.
