@@ -133,3 +133,4 @@ Resolved here so no skill has to argue them again. Details are in [audit.md](aud
 
 - [audit.md](audit.md): the rule-by-rule audit of both repositories. It was written before the repository decisions above, so its advice on forks and on importing first is superseded.
 - [audit-second-opinion.md](audit-second-opinion.md): an independent audit of Jakub's repository only, from another session. It is the source of the corrections above.
+- [judgment-calls.md](judgment-calls.md): the calls made during the conversion that the owner has not decided, each with its basis and alternative.

@@ -98,7 +98,7 @@ Each screen answers four questions: where am I, where can I go, what is here and
 
 ## Reporting
 
-**Severity.** `HIGH` traps people or loses their work. Examples are a modal with no way out, a screen with no way back and swipe to dismiss that discards unsaved changes. A hand-built modal is `HIGH` as well, since it reaches `design-review`'s VoiceOver containment trigger, which `accessibility` checks. `MEDIUM` is the wrong structure for the task. Examples are a sheet on a sheet, a hidden tab bar, a popover forced onto iPhone, an alert that only informs and a misplaced primary action. `LOW` is an isolated title or placement detail.
+**Severity.** `HIGH` traps people or loses their work. Examples are a modal with no way out, a screen with no way back and swipe to dismiss that discards unsaved changes. A hand-built modal that lets VoiceOver reach the screen behind it is `HIGH` as well, since that is one of `design-review`'s escalation triggers, which `accessibility` checks. `MEDIUM` is the wrong structure for the task. Examples are a sheet on a sheet, a hidden tab bar, a popover forced onto iPhone, an alert that only informs and a misplaced primary action. `LOW` is an isolated title or placement detail.
 
 **Verification.** Without Xcode, map the app's structure from the code: tabs, stacks, split views, every presentation and its trigger, and every toolbar placement. Check each against the rules above. With Xcode, walk every flow on the smallest iPhone, a full-screen iPad and a narrow iPad window. Swipe back on every pushed screen and swipe down on every sheet with unsaved changes. Report every check you could not run as `Not verified`.
 
