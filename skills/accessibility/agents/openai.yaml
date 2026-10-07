@@ -1,0 +1,3 @@
+interface:
+  display_name: "Accessibility"
+  short_description: "VoiceOver, Dynamic Type and touch targets in iOS apps"

@@ -63,13 +63,8 @@ The audits use the source names. They map to this repository's names as follows.
 - A toolbar Done may stay disabled while a required field is visibly empty.
 - Findings cite Apple's criteria and the HIG, never WCAG criterion numbers.
 - Navigation and presentation are a skill of their own, `navigation`, converted after `layout`.
-
-**Defaults, pending the owner's confirmation**
-
-| Question | Default in `AGENTS.md` |
-| --- | --- |
-| Other agents | Claude Code only: no `agents/openai.yaml`, no `opencode.json` |
-| Plugins | One plugin, `write-swift` included |
+- Other agents install through the skills CLI, and every skill carries `agents/openai.yaml` for Codex. There is no `opencode.json`.
+- One plugin, with `write-swift` included.
 
 **Open, decided when the affected skill is converted**
 

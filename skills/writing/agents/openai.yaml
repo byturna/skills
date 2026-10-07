@@ -1,0 +1,3 @@
+interface:
+  display_name: "Writing"
+  short_description: "Interface copy, errors and localizable strings"

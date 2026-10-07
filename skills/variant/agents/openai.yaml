@@ -1,0 +1,5 @@
+interface:
+  display_name: "Variant"
+  short_description: "Several versions of one piece behind a debug picker"
+policy:
+  allow_implicit_invocation: false

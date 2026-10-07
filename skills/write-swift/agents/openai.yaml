@@ -1,0 +1,3 @@
+interface:
+  display_name: "Write Swift"
+  short_description: "Modern Swift, concurrency and Swift Testing"

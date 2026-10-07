@@ -1,0 +1,3 @@
+interface:
+  display_name: "Color"
+  short_description: "System colors, palettes and contrast in iOS apps"

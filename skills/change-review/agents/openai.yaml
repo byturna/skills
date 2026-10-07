@@ -1,0 +1,5 @@
+interface:
+  display_name: "Change Review"
+  short_description: "Interface review of a branch, pull request or diff"
+policy:
+  allow_implicit_invocation: false

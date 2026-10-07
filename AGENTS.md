@@ -4,9 +4,11 @@ This file is the single source of guidance for coding agents working in this rep
 
 ## What this repository is
 
-A collection of agent skills for building native iOS interfaces with SwiftUI, with UIKit as the fallback, following Apple's Human Interface Guidelines. It is distributed as the Claude Code plugin `anr` from the marketplace `uix`, both defined in this repository. It is documentation-only; there is no build, lint or test tooling.
+A collection of agent skills for building native iOS interfaces with SwiftUI, with UIKit as the fallback, following Apple's Human Interface Guidelines. It is distributed two ways: as the Claude Code plugin `anr` from the marketplace `uix`, both defined in this repository, and through the skills CLI for other agents. It is documentation-only; there is no build, lint or test tooling.
 
 `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` define the plugin and its marketplace. Users install with `/plugin marketplace add byturna/skills` and `/plugin install anr@uix`, then invoke skills as `/anr:<skill>`. Skills are discovered from `skills/` automatically, so adding a skill needs no manifest change.
+
+Users of Codex, OpenCode, Cursor and the other agents the skills CLI supports install with `npx skills add byturna/skills`. It copies each skill directory whole. Codex reads `agents/openai.yaml` in each skill for its display name, short description and invocation policy, and every other agent reads only `SKILL.md`. There is no `opencode.json`, because OpenCode users install through the skills CLI like everyone else.
 
 Bump `version` in `plugin.json` in the same commit as any change under `skills/`. That number is the only signal installed users update on. `claude plugin update` compares it and nothing else, so a change shipped without a bump never reaches them. Run `claude plugin validate .` and `claude plugin validate .claude-plugin/plugin.json` after touching either manifest. The warning that a root `CLAUDE.md` is not loaded as plugin context is expected, since that file is for working on this repository.
 
@@ -36,7 +38,7 @@ So the exact value a skill gives is often the system's own: `.body`, `.secondary
 
 ## Structure
 
-Each skill lives in `skills/<skill-name>/`, with `SKILL.md` as the entry point and supporting `.md` files beside it.
+Each skill lives in `skills/<skill-name>/`, with `SKILL.md` as the entry point, supporting `.md` files beside it and `agents/openai.yaml` for Codex.
 
 Skills come in two shapes. A domain skill holds knowledge: what is true about typography, color or layout. A verb skill holds a procedure: review this change, explore these variants, preview these states. A procedure sitting inside a domain skill is a candidate for extraction, and a domain rule sitting inside a verb skill belongs to its owner instead.
 
@@ -76,7 +78,7 @@ Rendering a view, running a preview, taking a Simulator screenshot and running a
 
 A user-invoked skill may invoke model-invoked skills, but it can never reach another user-invoked skill. That rule decides the setting; it is not a preference:
 
-- `change-review`, `previews` and `variant` are the user-invoked skills. Each carries `disable-model-invocation: true` in its frontmatter.
+- `change-review`, `previews` and `variant` are the user-invoked skills. Each carries `disable-model-invocation: true` in its frontmatter and `policy.allow_implicit_invocation: false` in its `agents/openai.yaml`. Those are the Claude Code and Codex halves of one switch, so set them together. Agents that read neither may still start these skills on their own.
 - `variant` is user-invoked because a design exploration is never something to start on someone's behalf. It writes throwaway code and then asks a question only a person can answer.
 - `previews` is user-invoked because it writes preview files and fixtures into the project. Only the person working on the view knows when that is wanted.
 - The domain skills and `design-review` are model-invoked, because something must reach them: `design-review` routes to every domain skill, and `change-review` hands its review up to `design-review`.
@@ -129,7 +131,8 @@ When a concern crosses domains, keep the rule in the owner above and let other s
 - Every Swift snippet compiles against the iOS 26 SDK. An agent that cannot compile, such as one without Xcode, lists the unchecked snippets in its pull request.
 - Frontmatter `description` is how a skill gets found, and it is one or two plain sentences saying what the skill does for the user. It names the platform, as in "in SwiftUI apps", so it neither fires on web work nor gets confused with a web skill of the same name. It loads on every turn, so it earns harder pruning than the body. No trigger list: a keyword pile is a worse match signal than a clear sentence, and it goes stale the moment the skill's scope moves. The wording is the same as the skill's line in `README.md`, so changing one means changing both. The README may bold key terms and append `User-invoked.` for a user-invoked skill, and nothing else.
 - A domain skill is named for its domain as a bare noun, as in `typography` or `motion`. A verb skill is named for what it does, as in `change-review`. The `anr:` namespace and the platform in each description keep them apart from other plugins' skills.
-- A skill's name appears in its directory and its frontmatter `name`. Renaming means changing both, then `grep`ing for the old name to confirm nothing survived.
+- A skill's name appears in three places: its directory, its frontmatter `name` and `display_name` in its `agents/openai.yaml`. Renaming means changing all three, then `grep`ing for the old name to confirm nothing survived.
+- `short_description` in `agents/openai.yaml` is a phrase of a few words for Codex's skill list. Change it when the skill's scope moves, as you would the frontmatter `description`.
 - Never open a skill with a scripted first reply or a persona. The skill's content is the instruction.
 - Prefer counts and lists that cannot go stale. Say "every skill in this repository" rather than a number the next skill invalidates.
 - Straight quotes, sentence-case headings. No em dashes and no parentheses or mid-sentence colons standing in for one: end the sentence or use a comma. En dashes are for numeric ranges only.
