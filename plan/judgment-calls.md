@@ -178,6 +178,18 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Dynamic Type, dark appearance, Increase Contrast and right to left are listed as not compared, not as missing states | **Build only what the design shows** | Judgment | Ask for frames of each before building |
 | A screenshot's scale is worked out from its pixel size | **Read the design at its source** | Behavior | Ask the user for the device |
 
+## change-review
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Consumers are found by searching type and symbol names at the reviewed ref, since Swift files in one module do not import each other | **Expand the diff to the screens it reaches** | Behavior | Use an index from Xcode or SourceKit where one is available |
+| Five consumers at most, one hop by default and two for shared styling | **Expand the diff to the screens it reaches** | Source | A larger cap for apps with many screens |
+| Screens come first in the consumer order, and a `#Preview` is never a screen | `scope-resolution.md` | Judgment | Count previews as consumers, since they render the view |
+| `project.pbxproj` is excluded from the count but read for the deployment target and purpose strings | `scope-resolution.md` | Judgment | Keep it in scope as a changed file |
+| Color sets, String Catalogs and `Info.plist` stay in scope | `scope-resolution.md` | Judgment | Exclude them as data files |
+| Rendering is opt-in and `Not verified` is the default, since another revision needs a full Xcode build | **Never change the working tree** | Source, with the iOS cost | Render every review that has Xcode |
+| At most three pre-existing findings | **Review output format** | Source | None, so the review stays on the change |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |
