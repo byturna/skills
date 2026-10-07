@@ -111,6 +111,21 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Several Booleans driving sheets on one view are replaced by one optional value | **One modal at a time** | Judgment | Allow Booleans where the sheets cannot overlap |
 | A top-level screen keeps its large title | `structure.md` | Apple | Leave the title mode to the design |
 
+## color
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| A custom color standing in for a system one is a finding, and custom ramps are for the brand, the accent and product categories | **System colors first** | Apple | Allow a custom neutral ramp where the brand calls for one |
+| Roles are color sets filled from the ramp, and the ramp itself is never referenced, because a color set cannot point at another | **Views reference roles, never the palette** | Judgment | Roles in code, built with `UIColor(dynamicProvider:)` from fixed palette sets |
+| Color sets are referenced through generated symbols, never strings | **Every custom color is a color set with four variants** | Judgment | Allow `Color("Name")` where the project already uses it consistently |
+| Hues within about 15° count as one color | **One color, one meaning** | Source | No number |
+| Ramp step sizes of `0.04`–`0.05` and `0.07`–`0.10` of OKLCH `L` | `palettes.md` | Source | Leave step sizes to the design tool |
+| The HIG's 7:1 for custom pairs is a recommendation, never a finding | `contrast.md` | Judgment | Report custom pairs under 7:1 as `LOW` findings |
+| An in-app light and dark setting is a `MEDIUM` finding | **Follow the system appearance** | Apple | Allow it as a user preference |
+| Contrast computed from two opaque custom color sets counts as measured without Xcode | `## Reporting` | Judgment | Mark every pair `Not verified` without a render |
+| The luminance ratio function matches what the thresholds are stated in | `contrast.md` | Behavior | Use only Accessibility Inspector's reading |
+| A gradient that grays in the middle gets an extra stop, since SwiftUI offers only device and perceptual spaces | `palettes.md` | Apple | Accept the gray, or draw the gradient another way |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |
