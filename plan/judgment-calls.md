@@ -190,6 +190,20 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Rendering is opt-in and `Not verified` is the default, since another revision needs a full Xcode build | **Never change the working tree** | Source, with the iOS cost | Render every review that has Xcode |
 | At most three pre-existing findings | **Review output format** | Source | None, so the review stays on the change |
 
+## variant
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Variants live in the real screen behind `#if DEBUG`, with the choice in `@AppStorage`, in place of a URL parameter | **Build it into the real screen** | Judgment | One `#Preview` per variant and no in-app picker |
+| A launch argument is not offered for choosing a variant, because its value overrides what the picker writes | **Build it into the real screen** | Behavior | Offer it for launching straight into one variant |
+| Each variant also gets a `#Preview` in its real container | **Build it into the real screen** | Judgment | The picker alone |
+| The picker is a dark capsule in the system font, never glass, and uses `.footnote` rather than a fixed size | `picker.md` | Judgment | A small glass control, since it is debug-only |
+| Taps only: Jakub's arrow and number keys are dropped, since unmodified keys steal typing and Command with a digit collides with the Simulator | `picker.md` | Judgment | Command-digit shortcuts for iPad with a keyboard |
+| A chevron collapses the picker for screenshots, in place of the `H` key | `picker.md` | Judgment | A long press to hide |
+| Surface, motion and presentation are added as axes | **Different answers, not different tints** | Judgment | Keep Jakub's five axes |
+| The standalone HTML fallback is dropped; with no project, variants use system colors, the tint, text styles and SF Symbols | **Learn the ground** | Judgment | A scratch Swift package with previews |
+| The floor is a word-for-word copy of `design-review`'s triggers, recorded as a pair in `AGENTS.md` | **The floor every variant clears** | Process | Point at `design-review` without copying the list |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |

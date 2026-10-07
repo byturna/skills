@@ -16,6 +16,7 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 - [**typography**](skills/typography/SKILL.md): Sets and reviews how text renders in SwiftUI and UIKit apps, from Dynamic Type text styles and custom fonts to weights, numerals, truncation and punctuation.
 - [**ui**](skills/ui/SKILL.md): Builds the surfaces and icons of SwiftUI and UIKit apps, from Liquid Glass, materials and concentric corners to SF Symbols and iPad pointer hover.
 - [**writing**](skills/writing/SKILL.md): Writes and checks the words in SwiftUI and UIKit apps, from buttons, alerts and errors to empty states, permission requests and notifications, in one voice and ready to translate.
+- [**variant**](skills/variant/SKILL.md): Builds several genuinely different versions of one piece of a SwiftUI or UIKit screen behind a debug picker in the app, so you can flip between them and choose. User-invoked.
 - [**write-swift**](skills/write-swift/SKILL.md): Writes, reviews and migrates modern Swift, from value types and generics to Swift 6 concurrency, performance and Swift Testing.
 
 ## Install

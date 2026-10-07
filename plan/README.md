@@ -21,7 +21,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine`. Emil: `break-ui` + `CATALOG.md`. Rebuilt on Xcode's preview articles. `switcher.md` is dropped, since the canvas lists named previews | Added |
 | 11 | `build-design` | Jakub: `build-design`, `figma.md`. Rebuilt on Figma's MCP tools and its design-to-code guidance, with the iOS UI Kit mapped to system components | Added |
 | 12 | `change-review` | Jakub: `interface-review` and both reference files. Consumers found by symbol name, iOS exclusions and a removed-signals table in SwiftUI and UIKit | Added |
-| 13 | `variant` | Jakub: `variant` + `picker.md`. Emil: `prototype` + `PICKER.md` | Planned |
+| 13 | `variant` | Jakub: `variant` + `picker.md`. Emil: `prototype` + `PICKER.md`. The picker rewritten as a SwiftUI debug overlay | Added |
 
 Not converted: Jakub's `explain-interface`; Emil's `mobile-native`, `pick-ui-library`, `ask-sonner`, `improve-animations` and `performance-cheatsheet.md`. The reasons are in [audit.md](audit.md).
 
