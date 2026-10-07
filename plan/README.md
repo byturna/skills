@@ -16,7 +16,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16 grouping and mapping. Rebuilt on the HIG Layout, Right to Left, Scroll Views, Lists and Tables, Disclosure Controls and Virtual Keyboards pages | Added |
 | 6 | `navigation` | Emil: `apple-design` §16 wayfinding, the navigation rows of `animate-expo`. New, on the HIG Tab Bars, Sidebars, Split Views, Modality, Sheets, Popovers, Alerts, Action Sheets, Toolbars and Search Fields pages | Added |
 | 7 | `color` | Jakub: `better-colors` and every reference file. Rebuilt on the HIG Color and Dark Mode pages | Added |
-| 8 | `writing` | Jakub: `better-writing`, `patterns.md` | Planned |
+| 8 | `writing` | Jakub: `better-writing`, `patterns.md`. Rebuilt on the HIG Writing, Alerts, Action Sheets, Menus, Privacy, Notifications, Undo and Redo and Inclusion pages, and Xcode's String Catalog articles | Added |
 | 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The draft triggers below | Planned |
 | 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine` + `switcher.md`. Emil: `break-ui` + `CATALOG.md` | Planned |
 | 11 | `build-design` | Jakub: `build-design`, `figma.md` | Planned |
@@ -73,9 +73,8 @@ The audits use the source names. They map to this repository's names as follows.
 
 **Open, decided when the affected skill is converted**
 
-- Capitalization: adopt Apple's title style for buttons, menu items, alert titles and navigation titles.
 - Preview lifetime: keep state previews committed, the Swift norm, or delete them on request.
-- Surfaces in scope: widgets, Live Activities, notifications and App Intents.
+- Surfaces in scope: widgets, Live Activities and App Intents. Notification copy is in `writing`.
 
 ## Corrections to audit.md
 

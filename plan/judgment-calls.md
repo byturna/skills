@@ -126,6 +126,20 @@ Settled in the plan's conflicts table so no skill argues them again.
 | The luminance ratio function matches what the thresholds are stated in | `contrast.md` | Behavior | Use only Accessibility Inspector's reading |
 | A gradient that grays in the middle gets an extra stop, since SwiftUI offers only device and perceptual spaces | `palettes.md` | Apple | Accept the gray, or draw the gradient another way |
 
+## writing
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Apple's capitalization is the default only where the project has none; a project's consistent style for an element type wins, and only mixed styles are a finding | **Capitalization follows the component** | Judgment, on the HIG Writing page's one-style-per-element rule | Report every departure from Apple's component rules, such as sentence-case buttons |
+| Navigation titles, tab labels and list row labels default to title style | **Capitalization follows the component** | Behavior, from the system apps; the HIG names no style | Sentence style, or no default |
+| Avoid "we" everywhere and never use it in an error, overriding Jakub's allowance for an established first-person voice | **Address people as you** | Apple | Keep a brand's established "we" outside errors |
+| An agent writes the source language only and leaves translations alone unless asked | **Every string goes through the catalog** | Judgment | Fill new keys with machine translations, which Xcode marks as such |
+| Recovery for a common deletion is a Recently Deleted list or an undo; Jakub's undo toast is not prescribed | **Common deletions undo, rare ones confirm** | Apple, from the Alerts page | Require a visible Undo for every destructive action |
+| Typing an object's name to confirm deleting an account or workspace was dropped | **Common deletions undo, rare ones confirm** | Judgment, since iOS apps rarely do it | Keep it for accounts and shared spaces |
+| A purpose string that does not explain its use is `HIGH` | `## Reporting` | Apple, from App Review Guideline 5.1.1 | `MEDIUM`, as a wording finding |
+| Notification copy is in scope; widgets, Live Activities and App Shortcut phrases are not yet | `writing` | Judgment | Cover every system surface now |
+| Plural variants in the catalog are the recipe; automatic grammar agreement is kept only where a project already uses it | `strings.md` | Judgment | Prefer `inflect: true` where it supports the languages shipped |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |

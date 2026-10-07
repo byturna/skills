@@ -96,7 +96,7 @@ A user-invoked skill may invoke model-invoked skills, but it can never reach ano
 | `accessibility` | VoiceOver labels, traits, grouping, actions and focus; Voice Control, Switch Control and Full Keyboard Access; the requirement that text scales and nothing clips at accessibility sizes; hit targets; input semantics; announcements; display accommodations as requirements; the contrast requirement |
 | `layout` | Grouping, alignment, spacing, safe areas, size classes, adaptive structure, structure at accessibility text sizes, RTL mirroring of structure, keyboard avoidance and the expansion affordance for truncated content |
 | `navigation` | How people move through the app and where a task appears: stacks, split views, tabs and sidebars, which presentation a flow uses among push, sheet, full-screen cover, popover, alert and confirmation dialog, sheet detents, toolbar item placement, search placement and wayfinding |
-| `writing` | Source wording, terminology, voice, tone, capitalization, labels, errors, empty states, permission purpose strings and the confirm-or-undo rule for destructive actions |
+| `writing` | Source wording, terminology, voice, tone, capitalization, labels, errors, empty states, permission requests and their purpose strings, notification copy, the confirm-or-undo rule for destructive actions and localizable strings with their plurals and formatted values |
 | `typography` | Text styles and the type scale, custom fonts and their Dynamic Type scaling, weights, numerals, wrapping and truncation mechanics, punctuation and text-level bidi behavior |
 | `color` | System semantic colors, custom palettes and their construction, asset catalog structure and naming, appearance and high-contrast variants, gamut, rendered-pair contrast measurement, color remediation and color on materials and glass |
 | `ui` | Surfaces: corner shape and concentricity, materials and Liquid Glass, elevation and image outlines; SF Symbols and custom icons including directional mirroring; iPad pointer hover |
@@ -110,6 +110,8 @@ When a concern crosses domains, keep the rule in the owner above and let other s
 - `accessibility` owns the header trait and reading order; `typography` owns how heading levels render visually.
 - `layout` owns mirroring of structure; `typography` owns language metadata, punctuation and mixed-direction text; `ui` owns directional symbols.
 - `typography` owns truncation mechanics; `layout` owns whether the surrounding layout has room or an expansion affordance; `writing` owns the source copy.
+- `accessibility` owns whether an element has a label, which traits it carries and where an error sits; `writing` owns the words in each.
+- `writing` owns formatting values through `FormatStyle`; `typography` owns how their digits render.
 - `accessibility` owns Reduce Motion and Reduce Transparency as requirements; `motion` owns the reduced-motion implementation and `ui` owns surfaces under Reduce Transparency.
 - `motion` owns haptics; `accessibility` owns the rule that no state rides on motion or haptics alone.
 - `ui` owns where glass and materials go; `color` owns color and contrast on them.
