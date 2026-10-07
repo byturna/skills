@@ -6,6 +6,7 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 
 - [**accessibility**](skills/accessibility/SKILL.md): Reviews and fixes VoiceOver, Voice Control, keyboard, Dynamic Type, touch target, form and Reduce Motion support in SwiftUI and UIKit apps, against Apple's accessibility criteria.
 - [**build-design**](skills/build-design/SKILL.md): Builds SwiftUI or UIKit views from a Figma file or design image, using the project's tokens, components and system controls, then compares the result against the design.
+- [**change-review**](skills/change-review/SKILL.md): Reviews a branch, pull request or uncommitted change to a SwiftUI or UIKit app for the interface problems it introduced or regressed. User-invoked.
 - [**color**](skills/color/SKILL.md): Builds and checks the colors of SwiftUI and UIKit apps, from system semantic colors and the accent to custom palettes, dark and high-contrast variants and measured contrast.
 - [**design-review**](skills/design-review/SKILL.md): Reviews a SwiftUI or UIKit screen, flow or app across accessibility, navigation, layout, writing, typography, color, surfaces and motion, and returns one ranked verdict.
 - [**layout**](skills/layout/SKILL.md): Sets grouping, alignment, spacing, safe areas and adaptive structure in SwiftUI and UIKit apps, so a screen holds up across size classes, text sizes, languages and right-to-left.
