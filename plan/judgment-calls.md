@@ -4,6 +4,23 @@ Calls made while converting the skills that the owner has not decided explicitly
 
 Each row names the call, where it lives, how firm its basis is and the alternative. Mark a row kept or flipped. A flipped call changes its skill in a pull request of its own, with a version bump.
 
+## Review outcome
+
+The owner reviewed every row below. Each was kept except these, which change in their own pull requests:
+
+- Other agents are supported through the skills CLI, with `agents/openai.yaml` for Codex.
+- The snippet check files are committed under `checks/`.
+- `motion` treats every system control, swipe actions and context menus included, as playing its own haptic.
+- `ui` reports an app's Liquid Glass opt-out once as `LOW`.
+- `typography` keeps light weights to 28pt and up.
+- `navigation` leaves a top-level screen's title mode to the design.
+- `color` allows a brand neutral ramp with every variant, and an in-app appearance setting that defaults to System.
+- `writing` defaults navigation titles, tab labels and list row labels to sentence style, and restores type-to-confirm for accounts, workspaces and shared spaces.
+- `writing` and the other domains take in widgets, Live Activities and App Shortcut phrases.
+- `previews` adds an All states preview with a debug picker, and a proposed fix per break.
+- `change-review` uses a references index for the checkout where the session has one.
+- `write-swift` drops its Swift 6.3 and 6.4 content.
+
 The basis column uses five values:
 
 | Basis | Means |

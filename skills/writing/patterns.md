@@ -24,6 +24,7 @@ The first and last words are always capitalized. So is a short preposition that 
 | Cannot be undone, one item | Title: Delete "Q3 Report"? Message: "This deletes the report and its 4 comments. You can't undo this action." Buttons: Delete Report, Cancel |
 | Cannot be undone, many items | Title: Delete 12 files? Message: "You can't undo this action." Buttons: Delete 12 Files, Cancel |
 | Affects other people | The message names who: "The 8 members of Design lose access." |
+| An account, a workspace or a shared space | A sheet asks people to type the name, such as acme-web, and the Delete button stays disabled until it matches |
 
 ```swift
 .confirmationDialog(
@@ -38,6 +39,45 @@ The first and last words are always capitalized. So is a short preposition that 
 ```
 
 `titleVisibility: .visible` keeps the title, which names the object, on screen. The dialog adds Cancel on its own.
+
+Deleting something larger asks for its name to be typed:
+
+```swift
+struct DeleteWorkspaceSheet: View {
+    let workspace: Workspace
+    @State private var typedName = ""
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField(workspace.name, text: $typedName)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                } header: {
+                    Text("Type “\(workspace.name)” to confirm")
+                } footer: {
+                    Text("This deletes the workspace for its \(workspace.memberCount) members. You can't undo this action.")
+                }
+                Section {
+                    Button("Delete Workspace", role: .destructive, action: deleteWorkspace)
+                        .disabled(typedName != workspace.name)
+                }
+            }
+            .navigationTitle("Delete workspace")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(role: .cancel) { dismiss() }
+                }
+            }
+        }
+    }
+
+    func deleteWorkspace() {}
+}
+```
 
 A registered undo names its action, and the system shows it as Undo Rename:
 

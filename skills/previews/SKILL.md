@@ -46,7 +46,9 @@ Make the data look like the product, with real-shaped names, amounts and dates i
 
 Put the previews where the project keeps them. With no convention, they go in one file beside the view, named for it, such as `MemberListPreviews.swift`. Wrap the file and every fixture in `#if DEBUG`, so nothing reaches a release build.
 
-Write one named `#Preview` per line of the list. The canvas lists them by name, so no picker is needed. Each one renders the real view inside the container it gets in production, such as a `List` row, a `NavigationStack` or a sheet, and adds nothing else. The previews set no fonts, colors, tints or backgrounds of their own.
+Write one named `#Preview` per line of the list, and the canvas lists them by name. Each one renders the real view inside the container it gets in production, such as a `List` row, a `NavigationStack` or a sheet, and adds nothing else. The previews set no fonts, colors, tints or backgrounds of their own.
+
+Add one more preview, All states, which puts a debug picker over the real view, so every state can be flipped in one place and on a device. The picker is the only thing it adds. Its code is in [picker.md](picker.md).
 
 Environment scenarios go through the environment, which is how the system applies them, so the view renders as it would on a device. Settings the environment cannot set, such as Increase Contrast and Reduce Motion, are named for the user to toggle. Both lists are in [scenarios.md](scenarios.md#environment).
 
@@ -60,13 +62,13 @@ Without Xcode, as in a Linux or cloud session, say so. Hand over the file and th
 
 Report the breaks first, then what survived:
 
-| Preview | Observed | Owner |
-| --- | --- | --- |
-| Worst case | The long email pushes the More button off the row | `layout` |
-| AX5 | The plan name truncates with no way to read it | `typography` |
-| Empty | A blank region with no message | `writing` |
+| Preview | Observed | Owner | Proposed fix |
+| --- | --- | --- | --- |
+| Worst case | The long email pushes the More button off the row | `layout` | Let the email wrap, and keep the button at its size |
+| AX5 | The plan name truncates with no way to read it | `typography` | Allow a second line at accessibility sizes |
+| Empty | A blank region with no message | `writing` | A `ContentUnavailableView` that says what goes here |
 
-Each break names the domain skill whose rules diagnose it. List the previews that survived, and name the settings the user should still toggle. End there, without suggestions.
+Each break names the domain skill whose rules diagnose it, and proposes the fix those rules give. List the previews that survived, and name the settings the user should still toggle. End there, without other suggestions.
 
 On a request to fix, follow the owner skill's rules. Then render every preview again, since a fix for one state often breaks another.
 
@@ -84,6 +86,7 @@ The previews are the report's evidence and the view's regression check, so they 
 | "Item 1", "Test User" or three identical rows | Product-shaped data in real counts |
 | `Task.sleep` or `asyncAfter` in a fixture | Inject the loading state directly |
 | `#Preview` with no name | A name from the list, such as `#Preview("Empty")` |
+| A debug picker in the project's colors, tint or glass | The picker as [picker.md](picker.md) gives it |
 | A fixture or preview outside `#if DEBUG` | Wrap it |
 | `.environment(\.accessibilityReduceMotion, …)` or another read-only setting | Name it for the user to toggle |
 | `#Preview(_:traits:arguments:body:)` | One named preview per scenario, since that macro needs a later SDK |

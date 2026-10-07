@@ -107,7 +107,7 @@ Play a haptic on the frame of the event that causes it, and pair it with a visua
 - `.impact` when something snaps or lands;
 - `.success`, `.warning` or `.error` for an outcome.
 
-Use each pattern only for its documented meaning. One action plays one haptic: never on scroll, never per frame and never on an entrance the user did not cause. Toggles, sliders and pickers already play their own. See [haptics.md](haptics.md).
+Use each pattern only for its documented meaning. One action plays one haptic: never on scroll, never per frame and never on an entrance the user did not cause. System controls play their own, so never add one on top. See [haptics.md](haptics.md).
 
 ## Reduce Motion swaps movement for fades
 

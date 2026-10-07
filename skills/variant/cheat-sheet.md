@@ -19,7 +19,7 @@ struct HostedVariantPicker: View {
     let onChange: (ActivityCardVariant) -> Void
 
     var body: some View {
-        VariantPicker(selection: $variant)
+        DebugPicker("Variants", selection: $variant)
             .onChange(of: variant, initial: true) { _, newValue in
                 onChange(newValue)
             }

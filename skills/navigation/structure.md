@@ -46,7 +46,7 @@ Where the app has an accessory people return to, such as a now-playing bar, the 
 
 ```swift
 TabView {
-    Tab("Listen Now", systemImage: "play.circle") {
+    Tab("Listen now", systemImage: "play.circle") {
         ListenNowTab()
     }
 }
@@ -124,4 +124,4 @@ AlbumDetail(album: album)
     }
 ```
 
-A top-level screen keeps its large title, which shrinks into the bar as people scroll. `.navigationSubtitle` adds context under the title, such as a count or a date.
+A top-level screen takes a large title by default, which shrinks into the bar as people scroll. The design may choose an inline title instead, and either is fine. `.navigationSubtitle` adds context under the title, such as a count or a date.

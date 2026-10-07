@@ -4,7 +4,7 @@ This file is the single source of guidance for coding agents working in this rep
 
 ## What this repository is
 
-A collection of agent skills for building native iOS interfaces with SwiftUI, with UIKit as the fallback, following Apple's Human Interface Guidelines. It is distributed two ways: as the Claude Code plugin `anr` from the marketplace `uix`, both defined in this repository, and through the skills CLI for other agents. It is documentation-only; there is no build, lint or test tooling.
+A collection of agent skills for building native iOS interfaces with SwiftUI, with UIKit as the fallback, following Apple's Human Interface Guidelines. It is distributed two ways: as the Claude Code plugin `anr` from the marketplace `uix`, both defined in this repository, and through the skills CLI for other agents. It is documentation-only. The one build step is `checks/`, Swift files built by hand in Xcode.
 
 `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` define the plugin and its marketplace. Users install with `/plugin marketplace add byturna/skills` and `/plugin install anr@uix`, then invoke skills as `/anr:<skill>`. Skills are discovered from `skills/` automatically, so adding a skill needs no manifest change.
 
@@ -68,7 +68,7 @@ Those three overlap, and that overlap is the price of a skill that works when in
 
 The same test settles any other overlap. A skill keeps a fact its own output cannot be produced without, such as a threshold it reports against or the trigger list it builds to. It names the owner beside it. A hand-off is enough when, without the sibling, the topic is simply out of scope. A recipe or a longer restatement of another skill's rule never qualifies.
 
-Where two skills need the same text whole, they carry identical copies and change them together. Name each such pair here when it is created. The escalation triggers in `design-review`'s **Rank by user impact** and the list in `variant`'s **The floor every variant clears** are one such pair.
+Where two skills need the same text whole, they carry identical copies and change them together. Name each such pair here when it is created. The escalation triggers in `design-review`'s **Rank by user impact** and the list in `variant`'s **The floor every variant clears** are one such pair. The `DebugPicker` code in the `## The picker` sections of `variant`'s and `previews`' `picker.md` is another.
 
 ### Verification needs Xcode
 
@@ -92,7 +92,7 @@ A user-invoked skill may invoke model-invoked skills, but it can never reach ano
 | --- | --- |
 | `design-review` | Review orchestration, project convention discovery, shared severity and its escalation triggers, the shared remediation ordering including its **Use the platform** step, consolidation, coverage, the finding cap, the orchestrated output format and the verdict |
 | `change-review` | Change scope resolution including the empty-scope offer, blast radius from changed files to affected screens, finding classification (`Introduced` / `Regression` / `Pre-existing`) and the change-scoped report format |
-| `previews` | Making one view's states and worst-case inputs visible as `#Preview`s: finding them in the code, fixtures fed at the data boundary without editing the view, environment scenarios, rendering or handing over and the survived / broke report. Owns no domain rules and issues no verdict; each break names the domain skill that owns the fix |
+| `previews` | Making one view's states and worst-case inputs visible as `#Preview`s: finding them in the code, fixtures fed at the data boundary without editing the view, environment scenarios, the All states preview and its debug picker, rendering or handing over and the survived / broke report. Owns no domain rules and issues no verdict; each break names the domain skill that owns the fix |
 | `variant` | Design exploration: the axis set variants may diverge on, how many to build, the in-app picker behind `#if DEBUG`, the tradeoff table and promotion. Owns no domain rules; every variant clears `design-review`'s escalation triggers as its floor |
 | `build-design` | Building from a design: reading the Figma file or image at its source, mapping design values and instances onto existing tokens, components and system controls, the rounding rule, building only what the frames show, the side-by-side comparison and the fidelity report. Owns no domain rules; a design that breaks one is reported to its owner, never silently fixed |
 | `accessibility` | VoiceOver labels, traits, grouping, actions and focus; Voice Control, Switch Control and Full Keyboard Access; the requirement that text scales and nothing clips at accessibility sizes; hit targets; input semantics; announcements; display accommodations as requirements; the contrast requirement |
@@ -128,7 +128,7 @@ When a concern crosses domains, keep the rule in the owner above and let other s
 - Match the degree of prescription to the decision: requirements may be unconditional, while design heuristics name the context and escape conditions before giving exact recipe values.
 - Skills instruct agents to match the target project's mix of SwiftUI and UIKit rather than impose one.
 - Name an API only after confirming it in Apple's documentation, with its exact spelling. An API you cannot confirm does not go in a skill.
-- Every Swift snippet compiles against the iOS 26 SDK. An agent that cannot compile, such as one without Xcode, lists the unchecked snippets in its pull request.
+- Every Swift snippet compiles against the iOS 26 SDK. `checks/` holds one file per skill with every snippet it shows, and a change to a snippet changes its file there in the same pull request. An agent that cannot compile, such as one without Xcode, lists the unchecked snippets in its pull request.
 - Frontmatter `description` is how a skill gets found, and it is one or two plain sentences saying what the skill does for the user. It names the platform, as in "in SwiftUI apps", so it neither fires on web work nor gets confused with a web skill of the same name. It loads on every turn, so it earns harder pruning than the body. No trigger list: a keyword pile is a worse match signal than a clear sentence, and it goes stale the moment the skill's scope moves. The wording is the same as the skill's line in `README.md`, so changing one means changing both. The README may bold key terms and append `User-invoked.` for a user-invoked skill, and nothing else.
 - A domain skill is named for its domain as a bare noun, as in `typography` or `motion`. A verb skill is named for what it does, as in `change-review`. The `anr:` namespace and the platform in each description keep them apart from other plugins' skills.
 - A skill's name appears in three places: its directory, its frontmatter `name` and `display_name` in its `agents/openai.yaml`. Renaming means changing all three, then `grep`ing for the old name to confirm nothing survived.

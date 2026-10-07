@@ -47,7 +47,7 @@ Where the exclusions emptied the scope, name the excluded files in the offer. Ne
 
 A changed file is evidence, not the review subject. Its blast radius is the set of screens that render it, and those are what you review.
 
-Swift files in one module never import each other, so find consumers by searching the changed type's name at the reviewed ref. Expand one hop by default, to the views and screens that use it directly. Expand a second hop only for shared styling, where one line reaches the whole app. That means a color set, a font extension, a `ButtonStyle`, a `ViewModifier` or a shared view.
+Swift files in one module never import each other, so imports cannot lead to consumers. Where the target is the checkout itself and the session has an index that finds references, such as a language server, use it. For any other target, search the changed type's name at the reviewed ref. Expand one hop by default, to the views and screens that use it directly. Expand a second hop only for shared styling, where one line reaches the whole app. That means a color set, a font extension, a `ButtonStyle`, a `ViewModifier` or a shared view.
 
 Review at most five consumers across both hops, in the order [scope-resolution.md](scope-resolution.md#expanding-to-consumers) gives. State how many you did not expand, since an unstated cutoff reads as completeness.
 
