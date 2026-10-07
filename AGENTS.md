@@ -144,5 +144,3 @@ Four checks after an edit, since prose drifts back toward the mean:
 - **A description that matches its `README.md` line.** Two wordings of one skill is one skill described twice.
 - **One statement of each rule.** Before adding a sentence, check whether the file already says it somewhere else. The reflex to restate a boundary "for clarity" produces several copies of one ownership line, and mistake tables whose every row repeats the principle above it.
 - **A pruning pass, not a word ceiling.** Read each sentence and ask what it changes. A sentence that cannot be restated as an instruction, a fact or a number is cut. A sentence that could appear unchanged in another project's docs says nothing about this one. Prose about this repository's own filing decisions belongs in this file, never in a skill.
-
-`write-swift` came over with only its frontmatter, its first reply and its toolchain line changed, and its Swift 6.3 and 6.4 content has since been removed. It has not had these checks yet, so do not copy its style.

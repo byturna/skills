@@ -227,3 +227,9 @@ Settled in the plan's conflicts table so no skill argues them again.
 | --- | --- | --- | --- |
 | Converted with only its frontmatter, first reply and toolchain line changed; the prose pass waits | `skills/write-swift` | Process | Do the pass before any further skills |
 | Swift 6.3 and 6.4 features stay in, labeled, although the toolchain is Swift 6.2 | `write-swift` | Source | Remove them until Xcode ships them, so an agent never reaches for one |
+| The prose pass splits the skill into `SKILL.md` and four reference files for concurrency, performance, testing and modern syntax | `skills/write-swift` | Judgment | Keep one file, three times the length of any other skill |
+| It is treated as a domain skill, with a `## Reporting` section and its own severity ladder | **Reporting** | Judgment | No reporting section, since `design-review` never routes to it |
+| The name stays `write-swift`, although a domain skill is named as a bare noun | `skills/write-swift` | Process | Rename it `swift`, which changes the command installed users type |
+| Exit tests are cut, since they do not run on iOS | `testing.md` | Judgment | Keep them for macOS and Linux packages |
+| `OutputSpan` is cut, since Swift 6.2 ships the type without the standard library initializers that hand one out | `performance.md`, `modern-syntax.md` | Behavior | Keep it as a later-Swift feature |
+| Swift Testing calls are checked against Apple's documentation rather than compiled, since the check package has no test target | `checks/` | Process | Add a test target and build with `build-for-testing` |
