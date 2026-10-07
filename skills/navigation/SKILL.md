@@ -71,6 +71,10 @@ Search goes through `.searchable`. On iPhone, put it in the bottom toolbar where
 
 Each screen answers four questions: where am I, where can I go, what is here and how do I get out. A title names the screen, never the app. The selected tab or sidebar item shows the section. A back button or a Close button is always present. A deep link opens with its stack built, so back leads somewhere sensible.
 
+## Widgets and Live Activities open the screen they show
+
+A tap on a widget or a Live Activity opens the app at the content it shows, never at its root. Set the destination with `widgetURL(_:)` on the widget's view or on the `DynamicIsland`. A medium or larger widget may give each region its own `Link`. Both compact views of a Live Activity open the same screen. The screen that relates to a Live Activity also offers a way to end it, such as Unfollow Game. See [structure.md](structure.md#widgets-and-live-activities).
+
 ## Before you finish
 
 | Pattern | Fix |
@@ -95,6 +99,7 @@ Each screen answers four questions: where am I, where can I go, what is here and
 | `.fullScreenCover` for a short form | `.sheet` |
 | More than one prominent toolbar item | One primary action at the trailing edge |
 | A search field built from a `TextField` in a header | `.searchable` |
+| A widget or a `DynamicIsland` with no `widgetURL` or `Link` | Open the screen its content belongs to |
 
 ## Reporting
 

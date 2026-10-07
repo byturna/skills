@@ -232,3 +232,14 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Exit tests are cut, since they do not run on iOS | `testing.md` | Judgment | Keep them for macOS and Linux packages |
 | `OutputSpan` is cut, since Swift 6.2 ships the type without the standard library initializers that hand one out | `performance.md`, `modern-syntax.md` | Behavior | Keep it as a later-Swift feature |
 | Swift Testing calls are checked against Apple's documentation rather than compiled, since the check package has no test target | `checks/` | Process | Add a test target and build with `build-for-testing` |
+
+## Widgets, Live Activities and App Shortcuts
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| An App Shortcut's `shortTitle` takes a verb and a noun in title style, like the intent title Apple specifies | `writing` | Judgment | Leave the short title's style to the project |
+| The example error drops the HIG's "Sorry, we're out of" for "Chicken noodle soup is sold out", since `writing` forbids "we" in errors | `writing` | Judgment | Follow the Siri page's wording |
+| Widgets use `ContainerRelativeShape`, as the HIG says, while other nested shapes use `ConcentricRectangle` | `ui` | Apple | `ConcentricRectangle` everywhere |
+| The 16pt widget margin is left to the system, and only Apple's 11pt and 14pt values are named | `layout` | Apple | Name 16pt as well |
+| `accessibility` and `typography`'s Dynamic Type rules apply to widgets unchanged, so `accessibility` gets no widget principle | `accessibility` | Judgment | Widget-specific VoiceOver and hit-target rules |
+| Controls in Control Center, the Mac, visionOS and watchOS widget guidance are out, while Apple Watch and CarPlay Live Activities get the `.small` family | Every domain | Judgment | Cover controls now |

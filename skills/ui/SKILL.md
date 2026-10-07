@@ -57,6 +57,14 @@ A rounded shape inset inside another shares its corner's center, so its radius i
 
 A corner far from its container's corner resolves to square. Give it `.concentric(minimum:)` with the project's radius. Never repeat the outer radius on the inner shape. Recipes are in [shapes.md](shapes.md#concentric-corners).
 
+## Widgets draw their background through the container
+
+A widget's background goes in `containerBackground(for: .widget)`, never in `.background`. The system then removes it in StandBy, in CarPlay and in the clear and tinted appearances, where `showsWidgetContainerBackground` is `false`. Never add glass or a material to a widget, since the clear appearance applies Liquid Glass on its own.
+
+Inside a widget or a Live Activity, a nested shape takes `ContainerRelativeShape()`, which follows the outer corner. A small logo goes in the top trailing corner only where the content comes from several sources. A Live Activity shows a logo mark without its container, and neither ever shows the app icon.
+
+While a widget's data loads, WidgetKit redacts its real layout into placeholder shapes. Keep static labels readable with `.unredacted()`. See [shapes.md](shapes.md#widgets-and-live-activities).
+
 ## System controls keep their own shape
 
 Buttons, toggles, sliders, pickers and text fields take their iOS 26 shapes and sizes on their own, so never hard-code their height, padding or corner radius. Size a control with `.controlSize`, shape a bordered button with `.buttonBorderShape` and style it with a system button style. `RoundedRectangle` and `.rect(cornerRadius:)` are already continuous, so `style: .circular` needs a reason. See [shapes.md](shapes.md#control-shapes).
@@ -131,6 +139,10 @@ Touch has no hover. Every action or detail revealed under the pointer is also re
 | A symbol name missing from SF Symbols 7, or an icon from a second icon set | An SF Symbol or a custom symbol |
 | `.scaleEffect(x: -1)` on an icon, or any flip on a logo or checkmark | `.flipsForRightToLeftLayoutDirection(true)` on directional icons only |
 | Content shown only while `.onHover` or `.onContinuousHover` reports the pointer inside | A touch path as well |
+| `.background(` on a widget's root view | `containerBackground(for: .widget)` |
+| `RoundedRectangle(cornerRadius:` inside a widget or a Live Activity | `ContainerRelativeShape()` |
+| `.glassEffect` or a material in a widget | Remove it |
+| The app icon in a widget or a Live Activity | A small logo mark, or nothing |
 
 ## Reporting
 

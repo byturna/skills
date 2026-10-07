@@ -204,3 +204,13 @@ struct OnboardingPage: View {
     }
 }
 ```
+
+## Widgets and Live Activities
+
+A score that changes between timeline entries rolls its digits:
+
+```swift
+Text(entry.score, format: .number)
+    .monospacedDigit()
+    .contentTransition(.numericText(value: Double(entry.score)))
+```

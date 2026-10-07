@@ -393,4 +393,19 @@ enum MotionCheck {
             }
         }
     }
+    // MARK: Widgets and Live Activities animate their updates
+
+    struct ScoreEntry {
+        let score: Int
+    }
+
+    struct ScoreView: View {
+        let entry: ScoreEntry
+
+        var body: some View {
+            Text(entry.score, format: .number)
+                .monospacedDigit()
+                .contentTransition(.numericText(value: Double(entry.score)))
+        }
+    }
 }

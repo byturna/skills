@@ -6,6 +6,8 @@
 // with the other snippet files. Press Command-B; nothing here needs to run.
 
 import SwiftUI
+import WidgetKit
+import ActivityKit
 
 enum NavigationCheck {
 
@@ -393,6 +395,80 @@ enum NavigationCheck {
                         Text("All Mailboxes").tag(SearchScope.all)
                         Text("Current Mailbox").tag(SearchScope.current)
                     }
+            }
+        }
+    }
+    // MARK: Widgets and Live Activities open the screen they show
+
+    struct WidgetGame: Identifiable {
+        let id: Int
+        let url: URL
+    }
+
+    struct WidgetEntry {
+        let orderURL: URL
+        let games: [WidgetGame]
+    }
+
+    struct OrderStatusView: View {
+        let entry: WidgetEntry
+        var body: some View { Text(verbatim: entry.orderURL.absoluteString) }
+    }
+
+    struct GameRow: View {
+        let game: WidgetGame
+        var body: some View { Text(game.id, format: .number) }
+    }
+
+    struct OrderWidgetView: View {
+        let entry: WidgetEntry
+
+        var body: some View {
+            OrderStatusView(entry: entry)
+                .widgetURL(entry.orderURL)
+        }
+    }
+
+    struct GameAttributes: ActivityAttributes {
+        struct ContentState: Codable, Hashable {
+            var score: Int
+        }
+
+        var url: URL
+    }
+
+    struct GameLiveActivity: Widget {
+        var body: some WidgetConfiguration {
+            ActivityConfiguration(for: GameAttributes.self) { context in
+                Text(context.state.score, format: .number)
+                    .widgetURL(context.attributes.url)
+            } dynamicIsland: { context in
+                DynamicIsland {
+                    DynamicIslandExpandedRegion(.center) {
+                        Text(context.state.score, format: .number)
+                    }
+                } compactLeading: {
+                    Image(systemName: "sportscourt")
+                } compactTrailing: {
+                    Text(context.state.score, format: .number)
+                } minimal: {
+                    Text(context.state.score, format: .number)
+                }
+                .widgetURL(context.attributes.url)
+            }
+        }
+    }
+
+    struct GamesWidgetView: View {
+        let entry: WidgetEntry
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                ForEach(entry.games) { game in
+                    Link(destination: game.url) {
+                        GameRow(game: game)
+                    }
+                }
             }
         }
     }

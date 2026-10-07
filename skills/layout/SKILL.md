@@ -69,6 +69,21 @@ At accessibility text sizes, side-by-side text stacks vertically. Switch an `HSt
 
 Never fix the width or height of a view that holds text; use a minimum where a floor is needed. Buttons take the size of their labels, and rows of them wrap or stack when they run out of room. Translated text grows, and a one-word label grows the most in proportion. See [adaptivity.md](adaptivity.md#growth).
 
+## Widgets and Live Activities fit their slots
+
+A widget comes in fixed sizes. Offer only the families where the content adds value, through `supportedFamilies(_:)`, and lay out each one from `widgetFamily`. A small widget shows one piece of information. A larger one adds detail about the same idea and never stretches the small layout.
+
+Keep the content margins the system applies, and never pad the root view again. Inside them, 11pt suits a tight group of graphics or buttons. Where content must reach the edge, add `contentMarginsDisabled()` and inset the text by `widgetContentMargins`. A widget holds a few controls and never an app-like layout, and an inline accessory widget has one tap target.
+
+A Live Activity supplies four layouts:
+
+- The compact leading and trailing views read as one piece of information. They keep similar widths and sit snug against the camera.
+- The minimal view shows live data, such as a remaining time, rather than only a logo.
+- The expanded view keeps the compact view's placement and wraps close around the camera.
+- The Lock Screen view takes 14pt margins, Apple's standard, and grows or shrinks with its content.
+
+StandBy shows the Lock Screen view at twice the size, and `isActivityFullscreen` lets it rearrange for the space. For Apple Watch and CarPlay, add `supplementalActivityFamilies([.small])` and branch on `activityFamily`. Recipes are in [widgets.md](widgets.md).
+
 ## Mirror with leading and trailing
 
 Stacks, `.leading`, `.trailing` and leading or trailing padding mirror in right-to-left on their own. Offsets, `.position`, geometry arithmetic, `Path` and `Canvas` do not. Progress, ratings and steps run from the leading edge, while a control that points to a real direction keeps it. Text direction belongs to `typography`, and directional symbols to `ui`. See [mirroring.md](mirroring.md).
@@ -95,6 +110,11 @@ Stacks, `.leading`, `.trailing` and leading or trailing padding mirror in right-
 | A hard-coded leading padding in a column that elsewhere uses `.padding()` | The system margin |
 | Two prominent buttons on one screen | One prominent action |
 | `.environment(\.layoutDirection, .leftToRight)` forced on a screen | Fix what does not mirror |
+| `.padding()` on a widget's root view | Remove it, since the system's content margins apply |
+| `contentMarginsDisabled()` with text against the edge | Inset the text by `widgetContentMargins` |
+| A `widgetFamily` branch that only scales the small layout up | A layout for each family, or drop the family |
+| Padding between `compactLeading` or `compactTrailing` content and the camera | Remove it |
+| `.frame(height:)` on a Live Activity's Lock Screen view | Let the content set the height |
 
 ## Reporting
 

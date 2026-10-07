@@ -12,6 +12,9 @@
 import SwiftUI
 import UIKit
 import UserNotifications
+import WidgetKit
+import ActivityKit
+import AppIntents
 
 enum WritingCheck {
 
@@ -387,6 +390,114 @@ enum WritingCheck {
         }
 
         _ = UNNotificationActionOptions.destructive
+    }
+
+    // MARK: Widgets and Live Activities
+
+    struct OrderStatusEntry: TimelineEntry {
+        let date: Date
+    }
+
+    struct OrderStatusProvider: TimelineProvider {
+        func placeholder(in context: Context) -> OrderStatusEntry {
+            OrderStatusEntry(date: .now)
+        }
+
+        func getSnapshot(in context: Context, completion: @escaping (OrderStatusEntry) -> Void) {
+            completion(OrderStatusEntry(date: .now))
+        }
+
+        func getTimeline(in context: Context, completion: @escaping (Timeline<OrderStatusEntry>) -> Void) {
+            completion(Timeline(entries: [OrderStatusEntry(date: .now)], policy: .atEnd))
+        }
+    }
+
+    struct OrderStatusView: View {
+        let entry: OrderStatusEntry
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                Text("Sign in to view reservations.")
+                Text("Updated \(entry.date, style: .relative) ago")
+                Text(verbatim: "12 Market Street")
+                    .privacySensitive()
+            }
+        }
+    }
+
+    struct OrderStatusWidget: Widget {
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: "OrderStatus", provider: OrderStatusProvider()) { entry in
+                OrderStatusView(entry: entry)
+            }
+            .configurationDisplayName("Order Status")
+            .description("Follow your latest order from the kitchen to your door.")
+        }
+    }
+
+    struct OrderAttributes: ActivityAttributes {
+        struct ContentState: Codable, Hashable {
+            var minutesAway: Int
+        }
+
+        var restaurant: String
+    }
+
+    static func alertOnArrival(_ activity: Activity<OrderAttributes>, state: OrderAttributes.ContentState) async {
+        await activity.update(
+            ActivityContent(state: state, staleDate: nil),
+            alertConfiguration: AlertConfiguration(
+                title: "Order Arriving",
+                body: "The driver is 2 minutes away.",
+                sound: .default
+            )
+        )
+    }
+
+    // MARK: App Shortcuts
+
+    enum MeditationSession: String, AppEnum {
+        case morning, daily, sleep
+
+        static let typeDisplayRepresentation: TypeDisplayRepresentation = "Session"
+        static let caseDisplayRepresentations: [MeditationSession: DisplayRepresentation] = [
+            .morning: "Morning",
+            .daily: "Daily",
+            .sleep: "Sleep",
+        ]
+    }
+
+    struct StartMeditation: AppIntent {
+        static let title: LocalizedStringResource = "Start Meditation"
+
+        @Parameter(title: "Session")
+        var session: MeditationSession
+
+        func perform() async throws -> some IntentResult & ProvidesDialog {
+            .result(dialog: "Starting your session.")
+        }
+    }
+
+    struct MeditationShortcuts: AppShortcutsProvider {
+        static var appShortcuts: [AppShortcut] {
+            AppShortcut(
+                intent: StartMeditation(),
+                phrases: [
+                    "Start a \(\.$session) meditation in \(.applicationName)",
+                    "Meditate with \(.applicationName)",
+                ],
+                shortTitle: "Start Meditation",
+                systemImageName: "figure.mind.and.body"
+            )
+        }
+    }
+
+    struct MeditationTip: View {
+        @State private var showsMeditationTip = true
+
+        var body: some View {
+            SiriTipView(intent: StartMeditation(), isVisible: $showsMeditationTip)
+        }
     }
 }
 

@@ -289,6 +289,23 @@ enum TypographyCheck {
             return Text("Shared \(isolatedName) with you")
         }
     }
+
+    // MARK: Widgets and Live Activities read at a glance
+
+    struct DeliveryCountdown: View {
+        let arrival: ClosedRange<Date>
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                Text(timerInterval: arrival, countsDown: true)
+                    .font(.headline)
+                    .monospacedDigit()
+                Text(arrival.upperBound, style: .timer)
+                    .font(.subheadline.weight(.medium))
+                    .monospacedDigit()
+            }
+        }
+    }
 }
 
 extension View {

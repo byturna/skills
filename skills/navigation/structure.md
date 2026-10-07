@@ -125,3 +125,22 @@ AlbumDetail(album: album)
 ```
 
 A top-level screen takes a large title by default, which shrinks into the bar as people scroll. The design may choose an inline title instead, and either is fine. `.navigationSubtitle` adds context under the title, such as a count or a date.
+
+## Widgets and Live Activities
+
+The widget opens the order it shows, and each game row in a larger widget opens its own game:
+
+```swift
+OrderStatusView(entry: entry)
+    .widgetURL(entry.orderURL)
+
+VStack(alignment: .leading) {
+    ForEach(entry.games) { game in
+        Link(destination: game.url) {
+            GameRow(game: game)
+        }
+    }
+}
+```
+
+The app turns the URL into the stack it needs, as **Every screen says where it is and how to leave** requires.

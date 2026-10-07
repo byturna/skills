@@ -113,6 +113,10 @@ Use each pattern only for its documented meaning. One action plays one haptic: n
 
 Read `@Environment(\.accessibilityReduceMotion)`. Under it, a moving or scaling transition becomes `.opacity`, springs lose their bounce and decorative loops and indefinite symbol effects stop. Motion that tracks a finger stays. The table of what to disable, replace and keep is `accessibility`'s.
 
+## Widgets and Live Activities animate their updates
+
+A widget or a Live Activity animates when its content changes, and each animation lasts two seconds at most. Animate a changed number with `.contentTransition(.numericText(value:))`. When the layout changes, move the elements that stay to their new places rather than removing and re-adding them. The system skips these animations on the Always-On display. See [transitions.md](transitions.md#widgets-and-live-activities).
+
 ## Stagger and delight only where they are rare
 
 A staged entrance, a celebratory bounce or a playful spring belongs to onboarding, a first success or an empty state. Stagger items `0.05`s apart, one value for the project, and never block interaction while it plays. Never stage the content of a screen that arrives through a push, since it fights the system transition. See [transitions.md](transitions.md#staged-entrances).
@@ -136,6 +140,7 @@ A staged entrance, a celebratory bounce or a playful spring belongs to onboardin
 | `.sensoryFeedback` on a value that changes continuously, such as a scroll offset | Trigger on a discrete step or the commit |
 | `.sensoryFeedback(.success, …)` for something that is not an outcome | The pattern that matches the meaning |
 | `onAppear { withAnimation { … } }` on ordinary content | Show it; animate only real changes |
+| An animation longer than two seconds in a widget or a Live Activity | Two seconds at most |
 
 ## Reporting
 
