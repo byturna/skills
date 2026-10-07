@@ -65,6 +65,7 @@ The audits use the source names. They map to this repository's names as follows.
 - Navigation and presentation are a skill of their own, `navigation`, converted after `layout`.
 - Other agents install through the skills CLI, and every skill carries `agents/openai.yaml` for Codex. There is no `opencode.json`.
 - One plugin, with `write-swift` included.
+- `write-swift` keeps its name, although it holds knowledge, so the command installed users type does not change.
 
 **Open, decided when the affected skill is converted**
 
