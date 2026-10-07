@@ -237,8 +237,10 @@ enum WriteSwiftCheck {
         var position = 0.0
     }
 
+    // The closure inherits the main actor from this function. Spelling it
+    // `{ @MainActor in ... }` crashes the Swift 6.2.4 compiler in IRGen.
     static func follow(_ player: Player) async {
-        let positions = Observations { @MainActor in player.position }
+        let positions = Observations { player.position }
         for await position in positions {
             _ = position
             break
