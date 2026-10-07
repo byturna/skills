@@ -12,7 +12,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 1 | `accessibility` | Jakub: `better-accessibility` and every reference file, rebuilt on the HIG Accessibility and VoiceOver pages and the App Store accessibility label criteria | Added |
 | 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Added |
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12. Rebuilt on the HIG Materials, SF Symbols, Icons, Right to Left and Pointing Devices pages and Adopting Liquid Glass | Added |
-| 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15 | Planned |
+| 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15. Rebuilt on the HIG Typography and Right to Left pages, Applying Custom Fonts to Text and Scaling Fonts Automatically | Added |
 | 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16, the navigation rows of `animate-expo` | Planned |
 | 6 | `color` | Jakub: `better-colors` and every reference file | Planned |
 | 7 | `writing` | Jakub: `better-writing`, `patterns.md` | Planned |
@@ -87,7 +87,7 @@ The second audit cites Apple's documentation for these. Confirm each against the
 6. Previews can set `colorScheme`, `dynamicTypeSize`, `layoutDirection`, `locale` and `legibilityWeight`. Increase Contrast, Reduce Motion, Reduce Transparency and Differentiate Without Color are read-only, so the user toggles them.
 7. `ImageRenderer` does not render UIKit-backed views such as `List` and `TextField` faithfully, so it is a weak "look once" path.
 8. Swift files in one module never import each other. `change-review` finds consumers by searching symbol names, not imports.
-9. `.typesettingLanguage` keeps tall scripts from clipping, `accessibilityPlayAnimatedImages` and `accessibilityDimFlashingLights` gate autoplay and `.scrollDismissesKeyboard` covers keyboard dismissal.
+9. `.typesettingLanguage` keeps tall scripts from clipping, which `typography` now uses. `accessibilityPlayAnimatedImages` and `accessibilityDimFlashingLights` gate autoplay and `.scrollDismissesKeyboard` covers keyboard dismissal.
 10. The second audit puts haptics in `ui`. This plan keeps them in `motion`, as `AGENTS.md` says.
 
 ## Draft escalation triggers

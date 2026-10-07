@@ -6,6 +6,7 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 
 - [**accessibility**](skills/accessibility/SKILL.md): Reviews and fixes VoiceOver, Voice Control, keyboard, Dynamic Type, touch target, form and Reduce Motion support in SwiftUI and UIKit apps, against Apple's accessibility criteria.
 - [**motion**](skills/motion/SKILL.md): Decides whether something in a SwiftUI or UIKit app should animate, then builds it with system transitions, springs, symbol effects, gestures and haptics that feel native.
+- [**typography**](skills/typography/SKILL.md): Sets and reviews how text renders in SwiftUI and UIKit apps, from Dynamic Type text styles and custom fonts to weights, numerals, truncation and punctuation.
 - [**ui**](skills/ui/SKILL.md): Builds the surfaces and icons of SwiftUI and UIKit apps, from Liquid Glass, materials and concentric corners to SF Symbols and iPad pointer hover.
 - [**write-swift**](skills/write-swift/SKILL.md): Writes, reviews and migrates modern Swift, from value types and generics to Swift 6 concurrency, performance and Swift Testing.
 
