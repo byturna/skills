@@ -14,7 +14,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12. Rebuilt on the HIG Materials, SF Symbols, Icons, Right to Left and Pointing Devices pages and Adopting Liquid Glass | Added |
 | 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15. Rebuilt on the HIG Typography and Right to Left pages, Applying Custom Fonts to Text and Scaling Fonts Automatically | Added |
 | 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16 grouping and mapping. Rebuilt on the HIG Layout, Right to Left, Scroll Views, Lists and Tables, Disclosure Controls and Virtual Keyboards pages | Added |
-| 6 | `navigation` | Emil: `apple-design` §16 wayfinding, the navigation rows of `animate-expo`. New, on the HIG navigation and presentation pages | Planned |
+| 6 | `navigation` | Emil: `apple-design` §16 wayfinding, the navigation rows of `animate-expo`. New, on the HIG Tab Bars, Sidebars, Split Views, Modality, Sheets, Popovers, Alerts, Action Sheets, Toolbars and Search Fields pages | Added |
 | 7 | `color` | Jakub: `better-colors` and every reference file | Planned |
 | 8 | `writing` | Jakub: `better-writing`, `patterns.md` | Planned |
 | 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The draft triggers below | Planned |
