@@ -3,9 +3,8 @@
 // Every Swift snippet from skills/previews, copied as written, plus one use of
 // each API the prose and the cheat sheet name. The made-up types sit inside
 // `PreviewsCheck`, and type aliases let the previews use them by their short
-// names, as the skill does. `#Preview` stays at file scope. Add this file to
-// the app target only; the test targets do not need it.
-// Press Command-B; nothing here needs to run.
+// names, as the skill does. `#Preview` stays at file scope. Press Command-B;
+// nothing here needs to run.
 
 import SwiftUI
 import SwiftData

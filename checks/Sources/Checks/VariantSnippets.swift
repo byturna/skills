@@ -1,7 +1,7 @@
 // VariantSnippets.swift
 //
 // Every Swift snippet from skills/variant, copied as written. Everything sits
-// inside `VariantCheck`, so this file can share a project with the other
+// inside `VariantCheck`, so this file can share a target with the other
 // snippet files, and `#Preview` stays at file scope. Most of it is inside
 // `#if DEBUG`, as the skill requires, so build with the Debug configuration.
 // Press Command-B; nothing here needs to run.

@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/typography, copied as written and wrapped
 // so it compiles on its own, plus one line for each API the prose names.
-// Everything sits inside `TypographyCheck`, so this file can share a project
+// Everything sits inside `TypographyCheck`, so this file can share a target
 // with the other snippet files. Press Command-B; nothing here needs to run.
 //
 // The BrandSans font names refer to files that are not in the project. That

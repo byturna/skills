@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/motion, copied as written and wrapped so
 // it compiles on its own. Everything sits inside `MotionCheck`, so this file
-// can share a project with other snippet files. Press Command-B; nothing here
+// can share a target with other snippet files. Press Command-B; nothing here
 // needs to run. One deprecation warning is expected: the "Bad" `.animation(_:)`.
 
 import SwiftUI

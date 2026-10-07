@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/layout, copied as written and wrapped so it
 // compiles on its own, plus one line for each API the prose names. Everything
-// sits inside `LayoutCheck`, so this file can share a project with the other
+// sits inside `LayoutCheck`, so this file can share a target with the other
 // snippet files. Press Command-B; nothing here needs to run.
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/color, copied as written and wrapped so it
 // compiles on its own, plus one line for each API the prose names. Everything
-// sits inside `ColorCheck`, so this file can share a project with the other
+// sits inside `ColorCheck`, so this file can share a target with the other
 // snippet files. Press Command-B; nothing here needs to run.
 //
 // The skill reads color sets through Xcode's generated symbols, such as
