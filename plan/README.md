@@ -17,7 +17,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 6 | `navigation` | Emil: `apple-design` §16 wayfinding, the navigation rows of `animate-expo`. New, on the HIG Tab Bars, Sidebars, Split Views, Modality, Sheets, Popovers, Alerts, Action Sheets, Toolbars and Search Fields pages | Added |
 | 7 | `color` | Jakub: `better-colors` and every reference file. Rebuilt on the HIG Color and Dark Mode pages | Added |
 | 8 | `writing` | Jakub: `better-writing`, `patterns.md`. Rebuilt on the HIG Writing, Alerts, Action Sheets, Menus, Privacy, Notifications, Undo and Redo and Inclusion pages, and Xcode's String Catalog articles | Added |
-| 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The draft triggers below | Planned |
+| 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The escalation triggers drafted here, now in the skill. The first-party table that replaces Emil's `pick-ui-library` | Added |
 | 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine` + `switcher.md`. Emil: `break-ui` + `CATALOG.md` | Planned |
 | 11 | `build-design` | Jakub: `build-design`, `figma.md` | Planned |
 | 12 | `change-review` | Jakub: `interface-review` and both reference files | Planned |
@@ -91,26 +91,9 @@ The second audit cites Apple's documentation for these. Confirm each against the
 9. `.typesettingLanguage` keeps tall scripts from clipping, which `typography` now uses. `accessibilityPlayAnimatedImages` and `accessibilityDimFlashingLights` gate autoplay and `.scrollDismissesKeyboard` covers keyboard dismissal.
 10. The second audit puts haptics in `ui`. This plan keeps them in `motion`, as `AGENTS.md` says.
 
-## Draft escalation triggers
+## Escalation triggers
 
-`design-review` owns these once it ships. `variant` restates them as its floor, and each domain skill's `## Reporting` names its share.
-
-- An interactive element with no VoiceOver label, or exposed without its button, toggle or adjustable trait.
-- A control reachable by touch but not by VoiceOver, Voice Control or Switch Control, such as a gesture-only action with no `.accessibilityAction`.
-- A control a hardware keyboard on iPad cannot reach, or one with `.focusEffectDisabled()` and no replacement.
-- Motion or autoplaying content that ignores Reduce Motion.
-- Body or control text that does not scale with Dynamic Type.
-- Content or a control clipped, overlapped or unreachable at the largest supported accessibility text size, at 320pt width or with the keyboard shown.
-- A control outside the safe area, under the home indicator, status bar or Dynamic Island.
-- A custom modal that leaves the content behind it reachable by VoiceOver.
-- Body or control text whose rendered contrast pair fails its required ratio, in either appearance.
-- State or meaning carried by color alone.
-- A destructive action with no confirmation, undo or distinct treatment.
-- Truncated content with no way to reach the full value.
-- Content or a control past a scroll edge or behind a disclosure with no visible cue.
-- An error that names no way to recover.
-- A semantic color used against its meaning.
-- A state change carried by motion or haptics alone.
+The list now lives in `design-review`, under **Rank by user impact**. `variant` restates it as its floor, and each domain skill's `## Reporting` names its share. Change all three together.
 
 ## Conflicts between the sources
 

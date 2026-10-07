@@ -140,6 +140,18 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Notification copy is in scope; widgets, Live Activities and App Shortcut phrases are not yet | `writing` | Judgment | Cover every system surface now |
 | Plural variants in the catalog are the recipe; automatic grammar agreement is kept only where a project already uses it | `strings.md` | Judgment | Prefer `inflect: true` where it supports the languages shipped |
 
+## design-review
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Domains run in the order `accessibility`, `navigation`, `layout`, `writing`, `typography`, `color`, `ui`, `motion` | **Domain skills are the sources of truth** | Judgment, extending Jakub's order | Put `navigation` after `layout`, or `motion` before the visual domains |
+| `HIGH` includes failing an App Review guideline | **Rank by user impact** | Judgment | Leave App Review out of the shared scale and let each domain grade it |
+| A trigger two skills check is reported once, under the domain whose rule the fix changes | **Rank by user impact** | Judgment | Always report it under `accessibility` |
+| Sixteen triggers against a cap of 15 findings, with the excluded count reported | **One root cause, one finding** | Source | Raise the cap, or exempt triggers from it |
+| A fix for a project below iOS 26 names the `if #available` branch or an older API | **Recon before judgment** | Judgment | Report the API and leave availability to the developer |
+| Gesture rebuilds such as swipe to delete and pull to refresh are filed under `motion`, and permission-free pickers under `writing` | `platform.md` | Judgment | File every rebuild under `accessibility`, since the system version brings VoiceOver |
+| `write-swift` is not a review domain | **Domain skills are the sources of truth** | Judgment | Add a code-quality row to the coverage table |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |
