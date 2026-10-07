@@ -1,0 +1,5 @@
+interface:
+  display_name: "Previews"
+  short_description: "Previews of one view's states and worst cases"
+policy:
+  allow_implicit_invocation: false

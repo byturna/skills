@@ -28,6 +28,14 @@ Agent skills for building native iOS interfaces with SwiftUI and UIKit, followin
 
 Skills then run as `/anr:<skill>`, and the model-invoked ones load on their own when a task needs them.
 
+For Codex, OpenCode, Cursor and the other agents the [skills CLI](https://github.com/vercel-labs/skills) supports:
+
+```text
+npx skills add byturna/skills
+```
+
+Skills installed this way run under their bare names, such as `color`, so check for clashes with skills you already have.
+
 ## Credits
 
 Built on [jakubkrehel/skills](https://github.com/jakubkrehel/skills) by Jakub Krehel and [emilkowalski/skills](https://github.com/emilkowalski/skills) by Emil Kowalski, both MIT. [NOTICE.md](NOTICE.md) carries their licenses and the commits the material was taken from.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Layout"
+  short_description: "Spacing, safe areas and adaptive iOS layouts"
