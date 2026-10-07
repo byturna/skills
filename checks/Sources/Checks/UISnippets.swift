@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/ui, copied as written and wrapped so it
 // compiles on its own, plus one line for each API the prose names. Everything
-// sits inside `UICheck`, so this file can share a project with the other
+// sits inside `UICheck`, so this file can share a target with the other
 // snippet files. Press Command-B; nothing here needs to run.
 //
 // Image("reply.arrow") names an asset that does not exist. That is fine: it

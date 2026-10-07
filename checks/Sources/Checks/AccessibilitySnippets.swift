@@ -1,8 +1,8 @@
 // AccessibilitySnippets.swift
 //
 // Every Swift snippet from skills/accessibility, copied as written and
-// wrapped so it compiles on its own. Add this file to an empty iOS App
-// project and press Command-B. Nothing here needs to run.
+// wrapped so it compiles on its own. Press Command-B; nothing here needs to
+// run.
 
 import SwiftUI
 

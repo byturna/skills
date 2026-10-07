@@ -2,7 +2,7 @@
 //
 // The Swift snippet from skills/build-design, copied as written, plus one use
 // of every API the mapping tables and the cheat sheet name. Everything sits
-// inside `BuildDesignCheck`, so this file can share a project with the other
+// inside `BuildDesignCheck`, so this file can share a target with the other
 // snippet files. Press Command-B; nothing here needs to run.
 
 import SwiftUI

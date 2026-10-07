@@ -2,11 +2,11 @@
 //
 // The example row from skills/design-review/review-format.md and one use of
 // every system API that platform.md and SKILL.md name. Everything sits inside
-// `DesignReviewCheck`, so this file can share a project with the other snippet
+// `DesignReviewCheck`, so this file can share a target with the other snippet
 // files. Press Command-B; nothing here needs to run.
 //
-// performAccessibilityAudit(for:_:) lives in XCTest, which an app target
-// cannot import, so it is not in this file. Its signature was checked against
+// performAccessibilityAudit(for:_:) lives in XCTest, which only a test target
+// can import, so it is not in this file. Its signature was checked against
 // Apple's documentation instead.
 
 import SwiftUI

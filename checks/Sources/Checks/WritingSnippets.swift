@@ -2,7 +2,7 @@
 //
 // Every Swift snippet from skills/writing, copied as written and wrapped so it
 // compiles on its own, plus one line for each API the prose and the cheat sheet
-// name. Everything sits inside `WritingCheck`, so this file can share a project
+// name. Everything sits inside `WritingCheck`, so this file can share a target
 // with the other snippet files. Press Command-B; nothing here needs to run.
 //
 // strings.md shows `Text(.recentOrders)`, a symbol Xcode generates from a
