@@ -165,6 +165,19 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Emil's fix column, severity levels and decisions section are dropped; each break names its owner instead | **Report what broke and stop** | Judgment, since the skill owns no domain rules | Keep a proposed fix per break |
 | `#Preview(_:traits:arguments:body:)` is excluded, because it arrives in the iOS 27 SDK | `## Before you finish` | Apple, from its availability | Use it when the baseline moves |
 
+## build-design
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Bars, sheets, the keyboard and other parts the system draws are built with the system API even where the design draws them differently, and the difference is reported | **The design decides, the system draws** | Judgment, on the platform default | Match the design pixel for pixel and report the departure from the system |
+| VoiceOver labels and traits go in without asking, since a design cannot show them | **The design decides, the system draws** | Judgment | Report each one as a deviation for the user to approve |
+| A design that breaks any other domain rule is built as designed and reported to the rule's owner | **The design decides, the system draws** | Source | Fix it and report the fix |
+| Text always maps to a text style, taking the nearer one when the size falls between two | **Map the design onto the project** | Judgment | Use the design's exact size, scaled with `@ScaledMetric` |
+| A margin that matches the system's becomes `.padding()`, and any other spacing with no project scale keeps the design's number | `mapping.md` | Judgment, following `layout` | Keep every number from the design |
+| Jakub's 2px rounding threshold becomes 2pt | **Map the design onto the project** | Source | A threshold in pixels at the device's scale |
+| Dynamic Type, dark appearance, Increase Contrast and right to left are listed as not compared, not as missing states | **Build only what the design shows** | Judgment | Ask for frames of each before building |
+| A screenshot's scale is worked out from its pixel size | **Read the design at its source** | Behavior | Ask the user for the device |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |
