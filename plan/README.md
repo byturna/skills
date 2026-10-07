@@ -18,7 +18,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 7 | `color` | Jakub: `better-colors` and every reference file. Rebuilt on the HIG Color and Dark Mode pages | Added |
 | 8 | `writing` | Jakub: `better-writing`, `patterns.md`. Rebuilt on the HIG Writing, Alerts, Action Sheets, Menus, Privacy, Notifications, Undo and Redo and Inclusion pages, and Xcode's String Catalog articles | Added |
 | 9 | `design-review` | Jakub: `better-interface`, `review-format.md`. The escalation triggers drafted here, now in the skill. The first-party table that replaces Emil's `pick-ui-library` | Added |
-| 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine` + `switcher.md`. Emil: `break-ui` + `CATALOG.md` | Planned |
+| 10 | `previews` | Jakub: `break` + `scenarios.md`, `state-machine`. Emil: `break-ui` + `CATALOG.md`. Rebuilt on Xcode's preview articles. `switcher.md` is dropped, since the canvas lists named previews | Added |
 | 11 | `build-design` | Jakub: `build-design`, `figma.md` | Planned |
 | 12 | `change-review` | Jakub: `interface-review` and both reference files | Planned |
 | 13 | `variant` | Jakub: `variant` + `picker.md`. Emil: `prototype` + `PICKER.md` | Planned |
@@ -73,7 +73,6 @@ The audits use the source names. They map to this repository's names as follows.
 
 **Open, decided when the affected skill is converted**
 
-- Preview lifetime: keep state previews committed, the Swift norm, or delete them on request.
 - Surfaces in scope: widgets, Live Activities and App Intents. Notification copy is in `writing`.
 
 ## Corrections to audit.md

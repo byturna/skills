@@ -152,6 +152,19 @@ Settled in the plan's conflicts table so no skill argues them again.
 | Gesture rebuilds such as swipe to delete and pull to refresh are filed under `motion`, and permission-free pickers under `writing` | `platform.md` | Judgment | File every rebuild under `accessibility`, since the system version brings VoiceOver |
 | `write-swift` is not a review domain | **Domain skills are the sources of truth** | Judgment | Add a code-quality row to the coverage table |
 
+## previews
+
+| Call | Where | Basis | Alternative |
+| --- | --- | --- | --- |
+| Previews stay committed as regression checks, and are deleted only on request | **The previews stay** | Judgment, on the Swift convention | Delete them once the report is read, as the web skills did |
+| Jakub's `break` and `state-machine` and Emil's `break-ui` become one skill | `previews` | Judgment | Keep a state workbench and a stress test as two skills |
+| The canvas's named previews replace the switcher, and there is no in-app `#if DEBUG` picker | **Write the previews** | Judgment | Port `switcher.md` as a SwiftUI overlay for testing on a device |
+| Environment scenarios are rendered, reversing the rule against simulating viewing modes | **Write the previews** | Apple, since the environment is how the system applies them | Name every setting for the user to toggle |
+| Every fixture and preview sits inside `#if DEBUG` | **Write the previews** | Judgment | Rely on Development Assets to keep fixtures out of release builds |
+| Breaks are not written into preview names, so committed previews do not carry stale notes | **Report what broke and stop** | Judgment | Mark each break in the preview's name, as Jakub marked the page |
+| Emil's fix column, severity levels and decisions section are dropped; each break names its owner instead | **Report what broke and stop** | Judgment, since the skill owns no domain rules | Keep a proposed fix per break |
+| `#Preview(_:traits:arguments:body:)` is excluded, because it arrives in the iOS 27 SDK | `## Before you finish` | Apple, from its availability | Use it when the baseline moves |
+
 ## write-swift
 
 | Call | Where | Basis | Alternative |
