@@ -8,7 +8,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 
 | # | Skill | Built from | Status |
 | --- | --- | --- | --- |
-| 0 | `write-swift` | Emil: `write-swift`, with the scripted first reply removed, the toolchain baseline set to Swift 6.2 and its Swift 6.3 and 6.4 content removed. The prose pass against `AGENTS.md` is still to do | Added |
+| 0 | `write-swift` | Emil: `write-swift`, with the scripted first reply removed, the toolchain baseline set to Swift 6.2 and its Swift 6.3 and 6.4 content removed, then brought to `AGENTS.md` in a prose pass | Added |
 | 1 | `accessibility` | Jakub: `better-accessibility` and every reference file, rebuilt on the HIG Accessibility and VoiceOver pages and the App Store accessibility label criteria | Added |
 | 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Added |
 | 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12. Rebuilt on the HIG Materials, SF Symbols, Icons, Right to Left and Pointing Devices pages and Adopting Liquid Glass | Added |
@@ -65,6 +65,7 @@ The audits use the source names. They map to this repository's names as follows.
 - Navigation and presentation are a skill of their own, `navigation`, converted after `layout`.
 - Other agents install through the skills CLI, and every skill carries `agents/openai.yaml` for Codex. There is no `opencode.json`.
 - One plugin, with `write-swift` included.
+- `write-swift` keeps its name, although it holds knowledge, so the command installed users type does not change.
 
 **Open, decided when the affected skill is converted**
 
