@@ -11,7 +11,7 @@ One skill per pull request, in this order. Each one bumps `version` in `plugin.j
 | 0 | `write-swift` | Emil: `write-swift`, with the scripted first reply removed and the toolchain baseline set to Swift 6.2. The prose pass against `AGENTS.md` is still to do | Added |
 | 1 | `accessibility` | Jakub: `better-accessibility` and every reference file, rebuilt on the HIG Accessibility and VoiceOver pages and the App Store accessibility label criteria | Added |
 | 2 | `motion` | Emil: `animate-expo` + RECIPES, `animate` + RECIPES, `apple-design` §1–11 and §13, `emil-design-eng`, `review-animations` + STANDARDS, `find-animation-opportunities`, `animation-vocabulary`. Jakub: `better-ui` `animations.md`, `enter-exit.md`, `icon-transitions.md`, `performance.md` | Added |
-| 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12 | Planned |
+| 3 | `ui` | Jakub: `better-ui`, `surfaces.md`, `icons.md`. Emil: `apple-design` §12. Rebuilt on the HIG Materials, SF Symbols, Icons, Right to Left and Pointing Devices pages and Adopting Liquid Glass | Added |
 | 4 | `typography` | Jakub: `better-typography` and every reference file. Emil: `apple-design` §15 | Planned |
 | 5 | `layout` | Jakub: `better-layout` and both reference files. Emil: `apple-design` §16, the navigation rows of `animate-expo` | Planned |
 | 6 | `color` | Jakub: `better-colors` and every reference file | Planned |
@@ -80,10 +80,10 @@ The audits use the source names. They map to this repository's names as follows.
 The second audit cites Apple's documentation for these. Confirm each against the docs when its skill is converted.
 
 1. Hit targets have a 28×28pt minimum as well as the 44×44pt default.
-2. Jakub's `12px` and `24px` control clearances match the HIG's 12pt and 24pt, so they are KEEP, not ADAPT.
+2. Jakub's `12px` and `24px` control clearances match the HIG's 12pt and 24pt, so they are KEEP, not ADAPT. Confirmed: the HIG gives them as pointer hit-region padding on iPad, now in `ui`.
 3. The HIG's contrast table differs from WCAG: up to 17pt needs 4.5:1, 18pt and up needs 3:1 and bold at any size needs 3:1.
 4. Gradients do have a space option, `Gradient.colorSpace(.perceptual)`. `Color.mix(with:by:in:)` replaces `color-mix()`.
-5. `RoundedRectangle` already defaults to continuous corners. iOS 26 also offers `.rect(cornerRadius: .containerConcentric)` under `.containerShape`.
+5. `RoundedRectangle` already defaults to continuous corners. iOS 26 adds `ConcentricRectangle`, resolved against `.containerShape`. Corrected: `.containerConcentric` is UIKit's, on `UICornerRadius`, and SwiftUI has no `.rect(cornerRadius: .containerConcentric)`.
 6. Previews can set `colorScheme`, `dynamicTypeSize`, `layoutDirection`, `locale` and `legibilityWeight`. Increase Contrast, Reduce Motion, Reduce Transparency and Differentiate Without Color are read-only, so the user toggles them.
 7. `ImageRenderer` does not render UIKit-backed views such as `List` and `TextField` faithfully, so it is a weak "look once" path.
 8. Swift files in one module never import each other. `change-review` finds consumers by searching symbol names, not imports.
