@@ -4,7 +4,7 @@ The system transitions to use before building any, how views enter and leave, ho
 
 ## System transitions
 
-Each of these brings its own motion, its interactive gestures and its Reduce Motion behavior. Never rebuild one. Which presentation a flow needs is `layout`'s; the animation then comes with it.
+Each of these brings its own motion, its interactive gestures and its Reduce Motion behavior. Never rebuild one. Which presentation a flow needs is `navigation`'s, and the animation comes with it.
 
 | Change | Use |
 | --- | --- |

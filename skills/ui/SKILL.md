@@ -7,7 +7,7 @@ description: Builds the surfaces and icons of SwiftUI and UIKit apps, from Liqui
 
 This skill decides what each surface on an iOS screen is made of and how its icons are drawn. It places Liquid Glass and materials, shapes corners and elevation, chooses and sizes SF Symbols and sets pointer effects on iPad.
 
-Color, vibrancy and contrast on glass and materials belong to `color`. The contrast requirement, Reduce Transparency as a requirement and icon labels belong to `accessibility`. Spacing, safe areas, toolbar placement and which presentation a flow uses belong to `layout`. Symbol animation belongs to `motion` and text styles to `typography`. The UIKit form of every API here is in [cheat-sheet.md](cheat-sheet.md).
+Color, vibrancy and contrast on glass and materials belong to `color`. The contrast requirement, Reduce Transparency as a requirement and icon labels belong to `accessibility`. Spacing and safe areas belong to `layout`, and toolbar placement and which presentation a flow uses to `navigation`. Symbol animation belongs to `motion` and text styles to `typography`. The UIKit form of every API here is in [cheat-sheet.md](cheat-sheet.md).
 
 ## The system draws most surfaces
 
