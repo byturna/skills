@@ -66,7 +66,7 @@ Those three overlap, and that overlap is the price of a skill that works when in
 
 The same test settles any other overlap. A skill keeps a fact its own output cannot be produced without, such as a threshold it reports against or the trigger list it builds to. It names the owner beside it. A hand-off is enough when, without the sibling, the topic is simply out of scope. A recipe or a longer restatement of another skill's rule never qualifies.
 
-Where two skills need the same text whole, they carry identical copies and change them together. Name each such pair here when it is created.
+Where two skills need the same text whole, they carry identical copies and change them together. Name each such pair here when it is created. The escalation triggers in `design-review`'s **Rank by user impact** and the list in `variant`'s **The floor every variant clears** are one such pair.
 
 ### Verification needs Xcode
 
