@@ -1,6 +1,9 @@
 # skills
 
-Agent skills for building native iOS interfaces with SwiftUI and UIKit, following Apple's Human Interface Guidelines. Skills are added one at a time as they are converted.
+> [!WARNING]
+> This plugin is for personal use and is still a work in progress. Installing it is not recommended.
+
+Agent skills for building native iOS interfaces with SwiftUI and UIKit, following Apple's Human Interface Guidelines.
 
 ## Skills
 
