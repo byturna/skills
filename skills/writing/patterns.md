@@ -239,14 +239,16 @@ Text("Updated \(entry.date, style: .relative) ago")
 An alert on a Live Activity update reads like a notification:
 
 ```swift
-await activity.update(
-    ActivityContent(state: state, staleDate: nil),
-    alertConfiguration: AlertConfiguration(
-        title: "Order Arriving",
-        body: "The driver is 2 minutes away.",
-        sound: .default
+if let activity = Activity<OrderAttributes>.activities.first {
+    await activity.update(
+        ActivityContent(state: state, staleDate: nil),
+        alertConfiguration: AlertConfiguration(
+            title: "Order Arriving",
+            body: "The driver is 2 minutes away.",
+            sound: .default
+        )
     )
-)
+}
 ```
 
 ## App Shortcuts

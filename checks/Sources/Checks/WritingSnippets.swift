@@ -443,15 +443,19 @@ enum WritingCheck {
         var restaurant: String
     }
 
-    static func alertOnArrival(_ activity: Activity<OrderAttributes>, state: OrderAttributes.ContentState) async {
-        await activity.update(
-            ActivityContent(state: state, staleDate: nil),
-            alertConfiguration: AlertConfiguration(
-                title: "Order Arriving",
-                body: "The driver is 2 minutes away.",
-                sound: .default
+    // `Activity` is not Sendable and `update` runs off the main actor, so the
+    // activity is looked up where it is updated rather than passed in.
+    static func alertOnArrival(state: OrderAttributes.ContentState) async {
+        if let activity = Activity<OrderAttributes>.activities.first {
+            await activity.update(
+                ActivityContent(state: state, staleDate: nil),
+                alertConfiguration: AlertConfiguration(
+                    title: "Order Arriving",
+                    body: "The driver is 2 minutes away.",
+                    sound: .default
+                )
             )
-        )
+        }
     }
 
     // MARK: App Shortcuts
