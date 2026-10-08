@@ -57,6 +57,12 @@ An icon frame, a thumbnail, padding or a fixed height that sits beside text take
 
 Timers, counters, scores and prices in a column take `.monospacedDigit()`, so each digit keeps one width and nothing shifts. Numbers in running text stay proportional. Format every number with a format style, so each locale gets its own digits and separators. Animating a changing number belongs to `motion`. See [details.md](details.md#numerals).
 
+## Widgets and Live Activities read at a glance
+
+Text in a widget or a Live Activity keeps its text styles, and widgets scale it from Large up to AX5. Keep a custom font to a widget's large figure, and set the rest in the system font. A Live Activity uses Medium weight or heavier, and keeps small text to secondary details.
+
+A countdown or a running clock is `Text(timerInterval:countsDown:)` or `Text(_:style:)` with `.timer`. The system keeps both current without a timeline reload, and both take `.monospacedDigit()` like any changing value.
+
 ## Wrap by default, truncate on purpose
 
 Text wraps until the layout stops it. `.lineLimit` belongs where the design truncates on purpose, such as a list row title. Use `.truncationMode(.middle)` for a file name or an identifier whose end matters, and `.lineLimit(_:reservesSpace:)` to keep rows of a grid aligned. Never use `.minimumScaleFactor` on body or control text, because it shrinks text a person enlarged. See [details.md](details.md#truncation).
@@ -107,6 +113,8 @@ Text on iOS is not selectable by default. Add `.textSelection(.enabled)` to the 
 | Text drawn into an image asset | A `Text` with its styling |
 | `.textSelection(.enabled)` on a container of labels and controls | Only on the content people copy |
 | A UIKit label with `preferredFont(forTextStyle:)` and no `adjustsFontForContentSizeCategory` | Set it to `true` |
+| A Live Activity's main text in `.body`, or in a weight below `.medium` | `.headline`, or `.weight(.medium)` and heavier |
+| A countdown driven by a `Timer`, or by a timeline entry each second | `Text(timerInterval:countsDown:)` |
 
 ## Reporting
 

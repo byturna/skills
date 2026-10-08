@@ -72,6 +72,20 @@ Text and symbols on a material take the hierarchical styles, `.primary` through 
 
 Liquid Glass is monochrome by default. Color a glass element only for emphasis, by tinting the background of the one primary action, never by coloring its label. Over colorful content, keep bar labels monochrome. See [contrast.md](contrast.md#translucent-surfaces).
 
+## Widgets keep their meaning in every rendering mode
+
+The system draws a widget in one of three modes, which `widgetRenderingMode` reports:
+
+- `.fullColor` on the Home Screen in the light and dark appearances, and in StandBy and CarPlay. Use semantic colors and color sets with both appearances.
+- `.accented` in the tinted and clear Home Screen appearances. The system replaces your colors with a tint or with Liquid Glass, so mark the accent group with `.widgetAccentable()`. Images desaturate, and `widgetAccentedRenderingMode(.fullColor)` keeps color only for media such as album art.
+- `.vibrant` on the Lock Screen and in StandBy at night. Use opaque grays, never white at an opacity, with white or light gray for the main content.
+
+A status carried only by hue disappears in two of the three modes. StandBy at night also tints the widget red, so check its contrast there. Recipes are in [widgets.md](widgets.md#rendering-modes).
+
+## Live Activities carry the brand in their content
+
+The Dynamic Island's background is always black, so a Live Activity shows its brand through bold colors in its text and symbols. Set `keylineTint(_:)` to that color. On the Lock Screen, `activityBackgroundTint(_:)` takes a color set with both appearances, measured on the Always-On display as well. Check the dismiss button the system generates, and set `activitySystemActionForegroundColor(_:)` where it clashes. See [widgets.md](widgets.md#live-activities).
+
 ## Store colors in the space they were designed in
 
 A color set stores sRGB or Display P3 components. A value from a design tool is usually sRGB, so keep it there unless it was designed in P3. Use P3 where the extra saturation carries meaning, and check that neighboring P3 colors stay distinct on an sRGB display. Derived colors come from `Color.mix(with:by:in:)`, never hand-mixed literals. See [palettes.md](palettes.md#gamut-and-gradients).
@@ -98,6 +112,11 @@ A color set stores sRGB or Display P3 components. A value from a design tool is 
 | White text on a system color fill, unmeasured | Measure it in both appearances |
 | A status hue within about 15° of the accent | Move it, or give the action a distinct treatment |
 | `UIColor(dynamicProvider:)` rebuilding a system color | The system color |
+| A widget with custom colors and no `.widgetAccentable()` | Mark the accent group |
+| `.widgetAccentedRenderingMode(.fullColor)` on an image that is not media | Let it desaturate |
+| `.white.opacity(` in a Lock Screen widget | An opaque gray |
+| A widget status shown only by `.red` or `.green` | Add text or a symbol, since two modes remove the hue |
+| `activityBackgroundTint` with a literal color | A color set with both appearances |
 
 ## Reporting
 

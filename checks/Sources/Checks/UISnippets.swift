@@ -9,6 +9,8 @@
 // compiles and only matters at run time.
 
 import SwiftUI
+import WidgetKit
+import DeveloperToolsSupport
 
 enum UICheck {
 
@@ -554,4 +556,81 @@ enum UICheck {
             }
         }
     }
+
+    // MARK: Widgets draw their background through the container
+
+    struct TransitEntry: TimelineEntry {
+        let date: Date
+        let line: String
+        let departure: Date
+    }
+
+    struct TransitWidgetView: View {
+        let entry: TransitEntry
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                Text("Next train")
+                    .font(.caption)
+                    .unredacted()
+                Text(entry.line)
+                    .font(.headline)
+                Spacer()
+                Text(entry.departure, style: .relative)
+                    .font(.title2.bold())
+                    .monospacedDigit()
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(.quaternary, in: ContainerRelativeShape())
+            }
+            .containerBackground(for: .widget) {
+                Color(.transitBackground)
+            }
+        }
+    }
+
+    struct TramComplication: View {
+        var body: some View {
+            ZStack {
+                AccessoryWidgetBackground()
+                Image(systemName: "tram")
+            }
+        }
+    }
+
+    struct ContainerBackgroundCheck: View {
+        @Environment(\.showsWidgetContainerBackground) private var showsBackground
+
+        var body: some View {
+            Text(verbatim: showsBackground ? "shown" : "removed")
+        }
+    }
+
+    struct TransitWidget: Widget {
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: "Transit", provider: TransitProvider()) { entry in
+                TransitWidgetView(entry: entry)
+            }
+            .containerBackgroundRemovable(true)
+        }
+    }
+
+    struct TransitProvider: TimelineProvider {
+        func placeholder(in context: Context) -> TransitEntry {
+            TransitEntry(date: .now, line: "Red Line", departure: .now)
+        }
+
+        func getSnapshot(in context: Context, completion: @escaping (TransitEntry) -> Void) {
+            completion(placeholder(in: context))
+        }
+
+        func getTimeline(in context: Context, completion: @escaping (Timeline<TransitEntry>) -> Void) {
+            completion(Timeline(entries: [placeholder(in: context)], policy: .atEnd))
+        }
+    }
+}
+
+// Stand-in for the symbol Xcode generates from a color set.
+extension ColorResource {
+    static let transitBackground = ColorResource(name: "TransitBackground", bundle: .main)
 }

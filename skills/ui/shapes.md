@@ -126,3 +126,42 @@ AsyncImage(url: album.coverURL) { image in
 ```
 
 `.strokeBorder` draws inside the shape, so the image keeps its size. The overlay's shape matches the clip's radius.
+
+## Widgets and Live Activities
+
+The badge follows the widget's corner, and the background leaves when the system removes it:
+
+```swift
+struct TransitWidgetView: View {
+    let entry: TransitEntry
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Next train")
+                .font(.caption)
+                .unredacted()
+            Text(entry.line)
+                .font(.headline)
+            Spacer()
+            Text(entry.departure, style: .relative)
+                .font(.title2.bold())
+                .monospacedDigit()
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(.quaternary, in: ContainerRelativeShape())
+        }
+        .containerBackground(for: .widget) {
+            Color(.transitBackground)
+        }
+    }
+}
+```
+
+A circular Lock Screen widget sits on the system's backdrop:
+
+```swift
+ZStack {
+    AccessoryWidgetBackground()
+    Image(systemName: "tram")
+}
+```

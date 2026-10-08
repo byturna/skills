@@ -6,6 +6,8 @@
 // snippet files. Press Command-B; nothing here needs to run.
 
 import SwiftUI
+import WidgetKit
+import ActivityKit
 
 enum LayoutCheck {
 
@@ -440,4 +442,177 @@ enum LayoutCheck {
             .environment(\.layoutDirection, .rightToLeft)
         }
     }
+
+    // MARK: widgets.md stand-ins
+
+    struct StepsEntry: TimelineEntry {
+        let date: Date
+        let steps: Int
+        let week: [Int]
+    }
+
+    struct StepsProvider: TimelineProvider {
+        func placeholder(in context: Context) -> StepsEntry { StepsEntry(date: .now, steps: 0, week: []) }
+        func getSnapshot(in context: Context, completion: @escaping (StepsEntry) -> Void) {
+            completion(placeholder(in: context))
+        }
+        func getTimeline(in context: Context, completion: @escaping (Timeline<StepsEntry>) -> Void) {
+            completion(Timeline(entries: [placeholder(in: context)], policy: .atEnd))
+        }
+    }
+
+    struct StepsSummary: View {
+        let entry: StepsEntry
+        var body: some View { Text(entry.steps, format: .number) }
+    }
+
+    struct WeekChart: View {
+        let days: [Int]
+        var body: some View { Text(days.count, format: .number) }
+    }
+
+    struct TrailEntry: TimelineEntry {
+        let date: Date
+        let trailName: String
+        let elevation: [Double]
+    }
+
+    struct TrailProvider: TimelineProvider {
+        func placeholder(in context: Context) -> TrailEntry { TrailEntry(date: .now, trailName: "", elevation: []) }
+        func getSnapshot(in context: Context, completion: @escaping (TrailEntry) -> Void) {
+            completion(placeholder(in: context))
+        }
+        func getTimeline(in context: Context, completion: @escaping (Timeline<TrailEntry>) -> Void) {
+            completion(Timeline(entries: [placeholder(in: context)], policy: .atEnd))
+        }
+    }
+
+    struct ElevationChart: View {
+        let points: [Double]
+        var body: some View { Text(points.count, format: .number) }
+    }
+
+    struct DeliveryAttributes: ActivityAttributes {
+        struct ContentState: Codable, Hashable {
+            var arrival: ClosedRange<Date>
+        }
+
+        var restaurant: String
+    }
+
+    struct DeliveryGlance: View {
+        let context: ActivityViewContext<DeliveryAttributes>
+        var body: some View { Text(verbatim: context.attributes.restaurant) }
+    }
+
+    struct DeliveryStandBy: View {
+        let context: ActivityViewContext<DeliveryAttributes>
+        var body: some View { Text(verbatim: context.attributes.restaurant) }
+    }
+
+    struct DeliveryDetail: View {
+        let context: ActivityViewContext<DeliveryAttributes>
+        var body: some View { Text(verbatim: context.attributes.restaurant) }
+    }
+
+    // MARK: widgets.md
+
+    struct StepsWidgetView: View {
+        let entry: StepsEntry
+        @Environment(\.widgetFamily) private var family
+
+        var body: some View {
+            switch family {
+            case .accessoryInline:
+                Text("\(entry.steps) steps")
+            case .systemMedium:
+                HStack {
+                    StepsSummary(entry: entry)
+                    Spacer()
+                    WeekChart(days: entry.week)
+                }
+            default:
+                StepsSummary(entry: entry)
+            }
+        }
+    }
+
+    struct StepsWidget: Widget {
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: "Steps", provider: StepsProvider()) { entry in
+                StepsWidgetView(entry: entry)
+            }
+            .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline])
+        }
+    }
+
+    struct ElevationWidgetView: View {
+        let entry: TrailEntry
+        @Environment(\.widgetContentMargins) private var margins
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(entry.trailName)
+                    .padding(margins)
+                ElevationChart(points: entry.elevation)
+            }
+        }
+    }
+
+    struct ElevationWidget: Widget {
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: "Elevation", provider: TrailProvider()) { entry in
+                ElevationWidgetView(entry: entry)
+            }
+            .contentMarginsDisabled()
+        }
+    }
+
+    struct DeliveryLiveActivity: Widget {
+        var body: some WidgetConfiguration {
+            ActivityConfiguration(for: DeliveryAttributes.self) { context in
+                DeliveryLockScreenView(context: context)
+            } dynamicIsland: { context in
+                DynamicIsland {
+                    DynamicIslandExpandedRegion(.leading) {
+                        Label(context.attributes.restaurant, systemImage: "bag")
+                    }
+                    DynamicIslandExpandedRegion(.trailing) {
+                        Text(timerInterval: context.state.arrival, countsDown: true)
+                            .monospacedDigit()
+                    }
+                    DynamicIslandExpandedRegion(.bottom) {
+                        ProgressView(timerInterval: context.state.arrival, countsDown: false)
+                    }
+                } compactLeading: {
+                    Image(systemName: "bag")
+                } compactTrailing: {
+                    Text(timerInterval: context.state.arrival, countsDown: true)
+                        .monospacedDigit()
+                } minimal: {
+                    Text(timerInterval: context.state.arrival, countsDown: true)
+                        .monospacedDigit()
+                }
+            }
+            .supplementalActivityFamilies([.small])
+        }
+    }
+
+    struct DeliveryLockScreenView: View {
+        let context: ActivityViewContext<DeliveryAttributes>
+        @Environment(\.activityFamily) private var family
+        @Environment(\.isActivityFullscreen) private var isFullscreen
+
+        var body: some View {
+            if family == .small {
+                DeliveryGlance(context: context)
+            } else if isFullscreen {
+                DeliveryStandBy(context: context)
+            } else {
+                DeliveryDetail(context: context)
+                    .padding(14)
+            }
+        }
+    }
+
 }

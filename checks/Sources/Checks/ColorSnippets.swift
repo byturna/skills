@@ -11,7 +11,10 @@
 // generate. At run time those colors are missing, which does not matter here.
 
 import SwiftUI
+import UIKit
 import DeveloperToolsSupport
+import WidgetKit
+import ActivityKit
 
 enum ColorCheck {
 
@@ -164,6 +167,89 @@ enum ColorCheck {
         environment.colorScheme = .dark
         return secondaryTextContrast(in: environment)
     }
+
+    // MARK: widgets.md
+
+    struct StepsWidgetView: View {
+        let steps: Int
+
+        var body: some View {
+            VStack(alignment: .leading) {
+                Image(systemName: "figure.walk")
+                    .foregroundStyle(.tint)
+                    .widgetAccentable()
+                Text(steps, format: .number)
+                    .font(.title.bold())
+                Text("steps")
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    struct AlbumEntry {
+        let artwork: UIImage
+    }
+
+    struct AlbumArtView: View {
+        let entry: AlbumEntry
+
+        var body: some View {
+            Image(uiImage: entry.artwork)
+                .resizable()
+                .widgetAccentedRenderingMode(.fullColor)
+                .scaledToFit()
+        }
+    }
+
+    struct RenderingModeLabel: View {
+        @Environment(\.widgetRenderingMode) private var renderingMode
+
+        var body: some View {
+            Text(verbatim: renderingMode == .vibrant ? "vibrant" : renderingMode == .accented ? "accented" : "fullColor")
+        }
+    }
+
+    struct DeliveryAttributes: ActivityAttributes {
+        struct ContentState: Codable, Hashable {
+            var arrival: ClosedRange<Date>
+        }
+
+        var restaurant: String
+    }
+
+    struct DeliveryDetail: View {
+        let context: ActivityViewContext<DeliveryAttributes>
+        var body: some View { Text(verbatim: context.attributes.restaurant) }
+    }
+
+    struct DeliveryLiveActivity: Widget {
+        var body: some WidgetConfiguration {
+            ActivityConfiguration(for: DeliveryAttributes.self) { context in
+                DeliveryDetail(context: context)
+                    .activityBackgroundTint(Color(.deliveryBackground))
+                    .activitySystemActionForegroundColor(Color(.deliveryAccent))
+            } dynamicIsland: { context in
+                DynamicIsland {
+                    DynamicIslandExpandedRegion(.leading) {
+                        Image(systemName: "bag")
+                            .foregroundStyle(Color(.deliveryAccent))
+                    }
+                } compactLeading: {
+                    Image(systemName: "bag")
+                        .foregroundStyle(Color(.deliveryAccent))
+                } compactTrailing: {
+                    Text(timerInterval: context.state.arrival, countsDown: true)
+                        .monospacedDigit()
+                        .foregroundStyle(Color(.deliveryAccent))
+                } minimal: {
+                    Text(timerInterval: context.state.arrival, countsDown: true)
+                        .monospacedDigit()
+                        .foregroundStyle(Color(.deliveryAccent))
+                }
+                .keylineTint(Color(.deliveryAccent))
+            }
+        }
+    }
 }
 
 extension Color.Resolved {
@@ -191,4 +277,6 @@ extension ColorResource {
     static let partnerAccent = ColorResource(name: "PartnerAccent", bundle: .main)
     static let accentFill = ColorResource(name: "AccentFill", bundle: .main)
     static let brandAccent = ColorResource(name: "BrandAccent", bundle: .main)
+    static let deliveryAccent = ColorResource(name: "DeliveryAccent", bundle: .main)
+    static let deliveryBackground = ColorResource(name: "DeliveryBackground", bundle: .main)
 }

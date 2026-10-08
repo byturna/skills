@@ -215,3 +215,84 @@ let category = UNNotificationCategory(
 ```
 
 The title is the event itself, so the body adds only what is new. The placeholder says what kind of notification arrived without revealing it.
+
+## Widgets and Live Activities
+
+```swift
+struct OrderStatusWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "OrderStatus", provider: OrderStatusProvider()) { entry in
+            OrderStatusView(entry: entry)
+        }
+        .configurationDisplayName("Order Status")
+        .description("Follow your latest order from the kitchen to your door.")
+    }
+}
+```
+
+The system keeps a relative date current without a timeline reload:
+
+```swift
+Text("Updated \(entry.date, style: .relative) ago")
+```
+
+An alert on a Live Activity update reads like a notification:
+
+```swift
+if let activity = Activity<OrderAttributes>.activities.first {
+    await activity.update(
+        ActivityContent(state: state, staleDate: nil),
+        alertConfiguration: AlertConfiguration(
+            title: "Order Arriving",
+            body: "The driver is 2 minutes away.",
+            sound: .default
+        )
+    )
+}
+```
+
+## App Shortcuts
+
+```swift
+enum MeditationSession: String, AppEnum {
+    case morning, daily, sleep
+
+    static let typeDisplayRepresentation: TypeDisplayRepresentation = "Session"
+    static let caseDisplayRepresentations: [MeditationSession: DisplayRepresentation] = [
+        .morning: "Morning",
+        .daily: "Daily",
+        .sleep: "Sleep",
+    ]
+}
+
+struct StartMeditation: AppIntent {
+    static let title: LocalizedStringResource = "Start Meditation"
+
+    @Parameter(title: "Session")
+    var session: MeditationSession
+
+    func perform() async throws -> some IntentResult & ProvidesDialog {
+        .result(dialog: "Starting your session.")
+    }
+}
+
+struct MeditationShortcuts: AppShortcutsProvider {
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: StartMeditation(),
+            phrases: [
+                "Start a \(\.$session) meditation in \(.applicationName)",
+                "Meditate with \(.applicationName)",
+            ],
+            shortTitle: "Start Meditation",
+            systemImageName: "figure.mind.and.body"
+        )
+    }
+}
+```
+
+Show the tip after people finish the task by hand:
+
+```swift
+SiriTipView(intent: StartMeditation(), isVisible: $showsMeditationTip)
+```

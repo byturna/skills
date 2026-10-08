@@ -1,6 +1,6 @@
 ---
 name: writing
-description: Writes and checks the words in SwiftUI and UIKit apps, from buttons, alerts and errors to empty states, permission requests and notifications, in one voice and ready to translate.
+description: Writes and checks the words in SwiftUI and UIKit apps, in one voice and ready to translate. It covers buttons, alerts, errors, empty states, permission requests, notifications, widgets and App Shortcuts.
 ---
 
 # Writing
@@ -54,8 +54,8 @@ Apple sets the style for most components:
 | --- | --- |
 | Button, menu item, notification action and undo action name | Title style, no ending punctuation |
 | Alert or dialog title | Title style with no ending punctuation for a fragment, sentence style with its punctuation for a full sentence |
-| Notification title | Title style, no ending punctuation |
-| Alert message, footer, description, error, purpose string and notification body | Sentence style in complete sentences, with ending punctuation |
+| Notification title, widget name, App Intent title and App Shortcut title | Title style, no ending punctuation |
+| Alert message, footer, description, error, purpose string, notification body and spoken dialog | Sentence style in complete sentences, with ending punctuation |
 | Navigation title, tab label and list row label | The project's style, or sentence style where it has none |
 
 Any other element type takes one style of the project's choosing. A project that uses another style for an element type throughout keeps it. Mixed styles within one element type are the finding, such as Save Changes beside Discard changes. Which words title style leaves lowercase is in [patterns.md](patterns.md#title-style).
@@ -126,6 +126,28 @@ A notification's title is specific, such as an event name or a headline, in titl
 
 Never tell people to do something in the app, which they forget once the notification is gone. Set each category's `hiddenPreviewsBodyPlaceholder` to a generic phrase, such as "New comment", for people who hide previews. An action title names its result, never only opening the app. Errors go in an alert, never a notification. See [patterns.md](patterns.md#notifications).
 
+## Widgets and Live Activities stay on their task
+
+A widget's name, set with `configurationDisplayName(_:)`, is short. Its `description(_:)` starts with a verb, as in "See the current conditions and forecast for a location". Never open it with "This widget" or "Use this widget". One description covers every size of a widget.
+
+Where signing in adds content, the signed-out widget says so: "Sign in to view reservations." Where people look more often than the data updates, say when it last did, as in "Updated 10 min ago", with a date style the system keeps current.
+
+A Live Activity shows only its own task, never an ad or a promotion. It shows anything private as a plain summary, with the detail a tap away, or marks it `.privacySensitive()`. An update alerts only when people must not miss it, never alongside a push notification for the same news. Its `AlertConfiguration` follows **Notifications carry content, not instructions**. See [patterns.md](patterns.md#widgets-and-live-activities).
+
+## App Shortcut phrases are short enough to say
+
+People say App Shortcut phrases to Siri, and see the titles in Spotlight and the Shortcuts app.
+
+- An intent's `title` is a verb and a noun, such as Open Album, and so is an `AppShortcut`'s `shortTitle`.
+- Each phrase is brief, sounds natural aloud and includes `\(.applicationName)` exactly once. Add the variants people are likely to say.
+- A phrase takes at most one parameter, whose values people know without seeing a list.
+- List `appShortcuts` most useful first, since that order is how they first appear. An app offers at most 10.
+- Phrases translate in a String Catalog named `AppShortcuts.xcstrings`, and every translation keeps `${applicationName}`.
+
+Dialog must work when it is only heard, so it carries every critical detail. It leaves out the app's name, which the system already shows. A follow-up question names what it asks, "Which soup?" rather than "Which one?". An error names the actual problem, such as "Chicken noodle soup is sold out."
+
+Write App Shortcuts and the Shortcuts app in title case, and a single shortcut in lowercase. Never use a reserved phrase such as "Hey Siri", and never speak as Siri. A `SiriTipView` beside the task a shortcut speeds up tells people it exists. See [patterns.md](patterns.md#app-shortcuts).
+
 ## Placeholders show the format
 
 In a `Form`, a text field's title doubles as its placeholder, which `accessibility` covers. Where a visible label names the field, its `prompt:` shows a realistic example in the accepted format, such as name@example.com, never an instruction. A search prompt names what the search covers, such as "Search recipes".
@@ -160,12 +182,17 @@ In a `Form`, a text field's title doubles as its placeholder, which `accessibili
 | A notification `title` that is the app's name or a generic label | A specific title, or none |
 | `UNNotificationCategory` with no `hiddenPreviewsBodyPlaceholder` | A generic phrase for hidden previews |
 | Two identical "Learn more" links, or "Click here" | Name each destination |
+| `.description("This widget` or `.description("Use this` | Start with the verb: "See your next three events" |
+| An `AppShortcut` phrase without `\(.applicationName)`, or with two parameters | The app's name once, and one parameter at most |
+| An intent `title` that is a noun alone, such as `"Album"` | A verb and a noun: Open Album |
+| A `dialog:` that names the app, or asks "Which one?" | Leave the app out, and name what the question asks |
+| A name, an address or a message in a Live Activity with no `.privacySensitive()` | A plain summary, or mark it private |
 
 ## Reporting
 
 **Severity.** `HIGH` misleads people or hides how to recover. Two of `design-review`'s escalation triggers land here and are `HIGH` on sight. They are an error that names no way to recover and a destructive action with no confirmation, undo or distinct treatment. A purpose string that does not say how the app uses the access is `HIGH` as well, since App Review requires one that does. `MEDIUM` breaks voice, terminology or capitalization consistency, or leaves a string that cannot be translated. `LOW` is isolated wording polish.
 
-**Verification.** Without Xcode, read every string in scope against the rules above. That covers literals in views, String Catalogs, purpose strings and notification content. Check each label against the action it invokes, each error for a fix and each term against the inventory. Report copy from a server you could not see as `Not verified`. With Xcode, build so the catalog picks up new strings, and confirm each one appears there. Preview each state that carries copy, such as empty, error, confirmation and denied access, and read every rendered string. Report every check you could not run as `Not verified`.
+**Verification.** Without Xcode, read every string in scope against the rules above. That covers literals in views, String Catalogs, purpose strings, notification content, widget descriptions and App Shortcut phrases. Check each label against the action it invokes, each error for a fix and each term against the inventory. Report copy from a server you could not see as `Not verified`. With Xcode, build so the catalog picks up new strings, and confirm each one appears there. Preview each state that carries copy, such as empty, error, confirmation and denied access, and read every rendered string. Report every check you could not run as `Not verified`.
 
 **Format.** Group findings under the principle each violates, ordered by severity, one row per root cause listing every location it appears in:
 
