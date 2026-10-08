@@ -1,6 +1,6 @@
 # skills
 
-> [!WARNING]
+> [!NOTE]
 > This plugin is for personal use and is still a work in progress. Installing it is not recommended.
 
 Agent skills for building native iOS interfaces with SwiftUI and UIKit, following Apple's Human Interface Guidelines.
