@@ -18,7 +18,7 @@ The skills are derived from `jakubkrehel/skills` and `emilkowalski/skills`, both
 
 Never write in either author's voice, and never attribute a rule to them inside a skill. A rule in this repository is this repository's.
 
-The conversion is tracked in `plan/`, which holds the decisions, the order, the status of every planned skill and two audits classifying every source rule. A skill named under **Rule ownership** but absent from `skills/` is planned, not missing. Delete `plan/` when the last planned skill ships.
+The conversion's plan, its two audits of every source rule and the judgment calls the owner reviewed are in the git history, in the `plan/` directory deleted once every skill shipped.
 
 ## Platform baseline
 
@@ -129,6 +129,7 @@ When a concern crosses domains, keep the rule in the owner above and let other s
 - Match the degree of prescription to the decision: requirements may be unconditional, while design heuristics name the context and escape conditions before giving exact recipe values.
 - Skills instruct agents to match the target project's mix of SwiftUI and UIKit rather than impose one.
 - Name an API only after confirming it in Apple's documentation, with its exact spelling. An API you cannot confirm does not go in a skill.
+- A rule cites Apple's documentation or the HIG, never a WCAG criterion number.
 - Every Swift snippet compiles against the iOS 26 SDK in the Swift 6 language mode. `checks/` is a Swift package with one file per skill holding every snippet it shows, and its README gives the build command. A change to a snippet changes its file there in the same pull request. An agent that cannot compile, such as one without Xcode, lists the unchecked snippets in its pull request.
 - Frontmatter `description` is how a skill gets found, and it is one or two plain sentences saying what the skill does for the user. It names the platform, as in "in SwiftUI apps", so it neither fires on web work nor gets confused with a web skill of the same name. It loads on every turn, so it earns harder pruning than the body. No trigger list: a keyword pile is a worse match signal than a clear sentence, and it goes stale the moment the skill's scope moves. The wording is the same as the skill's line in `README.md`, so changing one means changing both. The README may bold key terms and append `User-invoked.` for a user-invoked skill, and nothing else.
 - A domain skill is named for its domain as a bare noun, as in `typography` or `motion`. A verb skill is named for what it does, as in `change-review`. `write-swift` holds knowledge but keeps its verb name, so the command installed users type does not change. The `anr:` namespace and the platform in each description keep them apart from other plugins' skills.
